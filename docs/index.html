@@ -363,9 +363,9 @@ $(document).ready(function () {
 <h3>Aim:</h3>
 <p>Upon the successful completion of this course, I hope you will be able to achieve three things:</p>
 <ol style="list-style-type: decimal">
-<li><p>You will have been exposed to a wide range of methods of causal analysis, and acquire familiarity with their pros and cons.</p></li>
-<li><p>You will become more familiar with the terminology that is used in contemporary social research regarding causal inference.</p></li>
-<li><p>You will be able to identify weaknesses of research making claims about causal mechanisms; recognize implicit assumptions that drive those claims and critique those assumptions and their limitations.</p></li>
+<li>Gain more confidence in your numeric skills</li>
+<li>Communicate freely using concepts such as random variables, distributions, hypothesis testing and confidence intervals</li>
+<li>Distinguish between interpretation, estimation and prediction in statistical analysis</li>
 </ol>
 </div>
 <div id="method" class="section level3">
@@ -381,10 +381,50 @@ $(document).ready(function () {
 <div class="column-right">
 <p><img src="images/Perusall.jpg" width="483" /></p>
 </div>
-<div id="resources" class="section level3">
-<h3>Resources</h3>
-<p>Online (Nestor, Perusall, github): lectures, presentations, data-sets and exercises and background literature</p>
-<p>To brush up on your R programming skills, there are a variety of free resources you can use, such as the <a href="https://sicss.io/boot_camp/">SICSS bootcamp</a>, Harvard’s famous <a href="https://www.edx.org/course/data-science-r-basics">R Basics course</a>, or Stanford’s <a href="https://www.edx.org/course/r-programming-fundamentals">R Programming fundamentals</a>. If you speak German, <a href="https://shiny.lmes.uni-potsdam.de/startR/">this site</a> is quite nice.</p>
+<div id="accessing-rstudio" class="section level2">
+<h2>Accessing RStudio</h2>
+<p>You can access RStudio in three ways:</p>
+<div style="float:right;position: relative; margin-left: 10px">
+<!-- </div> -->
+<div class="figure" style="text-align: right">
+<img src="images/UsingRemote.png" alt="Using the Remote Desktop" width="300" />
+<p class="caption">
+Using the Remote Desktop
+</p>
+</div>
+</div>
+<ul>
+<li><strong>Install R on your computer</strong>: See the chapter <a href="https://happygitwithr.com/install-r-rstudio.html">Install or upgrade R and RStudio</a> in <em>Happy Git and GitHub for the useR</em> for step-by-step instructions to install R and RStudio.</li>
+<li><strong>Use the Remote desktop</strong> available from this link <a href="https://uwp.rug.nl" class="uri">https://uwp.rug.nl</a>, then from the start menu choose R-Studio. Choose the latest version and off you go!</li>
+<li><strong>RStudio Cloud</strong>: Sign up for a free account <a href="https://rstudio.cloud/" class="uri">https://rstudio.cloud/</a></li>
+</ul>
+<p><br />
+<br />
+<br />
+</p>
+</div>
+<div id="knitting-to-a-pdf" class="section level2">
+<h2>Knitting to a pdf</h2>
+<div style="float:right;position: relative; margin-left: 10px">
+<div class="figure" style="text-align: right">
+<img src="images/tinytex.jpg" alt="Knitting to a pdf" width="300" />
+<p class="caption">
+Knitting to a pdf
+</p>
+</div>
+</div>
+<p>To knit a pdf, you will need to run the following in your console-window. First, you need to install the package <code>tinytex</code>. You do that by first installing the tinytex package and then running the <code>tinytex::install_tinytex()</code> command, as you can see in the figure on the right hand side. You should now be able to knit your RMarkdown into a pdf file.</p>
+</div>
+<div id="additional-resources" class="section level2">
+<h2>Additional resources</h2>
+<ul>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Garrett Grolemund and Hadley Wickham</li>
+<li><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> by Jenny Bryan, the STAT 545 TAs, and Jim Hester</li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire, and Garrett Grolemund</li>
+<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham</li>
+<li><a href="https://rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a> Online (Nestor, Perusall, github): lectures, presentations, data-sets and exercises and background literature</li>
+</ul>
+<p>To develop your R programming skills, there are a variety of free resources you can use, such as the <a href="https://sicss.io/boot_camp/">SICSS bootcamp</a>, Harvard’s famous <a href="https://www.edx.org/course/data-science-r-basics">R Basics course</a>, or Stanford’s <a href="https://www.edx.org/course/r-programming-fundamentals">R Programming fundamentals</a>. If you speak German, <a href="https://shiny.lmes.uni-potsdam.de/startR/">this site</a> is quite nice.</p>
 <p>An introduction to visualization using <code>ggplot</code> is available in <a href="https://bit.ly/3rrzzqV">this playlist</a>.</p>
 <p>For RMarkdown, have a look at <a href="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/">piping hot data</a></p>
 <p>You may work and submit your assignments using any statistical software including SPSS, STATA, Python, SCALA or Julia. However, as R is becoming the lingua franca of data science in many academic circles, this is going to be the default technology used in this course.</p>

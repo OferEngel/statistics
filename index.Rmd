@@ -91,11 +91,10 @@ The aim of Statistics I is to engage you with the fundamental concepts of statis
 
 Upon the successful completion of this course, I hope you will be able to achieve three things:
 
-1. You will have been exposed to a wide range of methods of causal analysis, and acquire familiarity with their pros and cons. 
+1. Gain more confidence in your numeric skills
+1. Communicate freely using concepts such as random variables, distributions, hypothesis testing and confidence intervals
+1. Distinguish between interpretation, estimation and prediction in statistical analysis
 
-2. You will become more familiar with the terminology that is used in contemporary social research regarding causal inference.
- 
-3. You will be able to identify weaknesses of research making claims about causal mechanisms; recognize implicit assumptions that drive those claims and critique those assumptions and their limitations. 
 
 
 ### Method
@@ -127,11 +126,50 @@ include_graphics("images/Perusall.jpg")
 
 
 
-### Resources
 
+
+## Accessing RStudio 
+
+You can access RStudio in three ways: 
+
+<div style= "float:right;position: relative; margin-left: 10px">
+<!-- </div> -->
+```{r fig.margin = TRUE, fig.cap = "Using the Remote Desktop", fig.align="right", out.width=300}
+knitr::include_graphics("images/UsingRemote.png")
+```
+</div>
+
+* **Install R on your computer**: See the chapter [Install or upgrade R and RStudio](https://happygitwithr.com/install-r-rstudio.html) in *Happy Git and GitHub for the useR* for step-by-step instructions to install R and RStudio. 
+* **Use the Remote desktop** available from this link https://uwp.rug.nl, then from the start menu choose R-Studio. Choose the latest version and off you go!
+* **RStudio Cloud**: Sign up for a free account https://rstudio.cloud/ 
+
+\
+\
+\
+
+
+## Knitting to a pdf
+
+<div style= "float:right;position: relative; margin-left: 10px">
+```{r fig.margin = TRUE, fig.cap = "Knitting to a pdf", fig.align="right", out.width=300}
+knitr::include_graphics("images/tinytex.jpg")
+```
+</div>
+
+To knit a pdf, you will need to run the following in your console-window. First, you need to install the package `tinytex`. You do that by first installing the tinytex package and then running the `tinytex::install_tinytex()` command, as you can see in the figure on the right hand side. You should now be able to knit your RMarkdown into a pdf file. 
+
+
+
+## Additional resources
+
+- [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan, the STAT 545 TAs, and Jim Hester
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, and Garrett Grolemund
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) by Hadley Wickham
+- [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/)
 Online (Nestor, Perusall, github): lectures, presentations, data-sets and exercises and background literature
 
-To brush up on your R programming skills, there are a variety of free resources you can use, such as the [SICSS bootcamp](https://sicss.io/boot_camp/), Harvard’s famous [R Basics course](https://www.edx.org/course/data-science-r-basics), or Stanford’s [R Programming fundamentals](https://www.edx.org/course/r-programming-fundamentals). If you speak German, [this site](https://shiny.lmes.uni-potsdam.de/startR/) is quite nice. 
+To develop  your R programming skills, there are a variety of free resources you can use, such as the [SICSS bootcamp](https://sicss.io/boot_camp/), Harvard’s famous [R Basics course](https://www.edx.org/course/data-science-r-basics), or Stanford’s [R Programming fundamentals](https://www.edx.org/course/r-programming-fundamentals). If you speak German, [this site](https://shiny.lmes.uni-potsdam.de/startR/) is quite nice. 
 
 An introduction to visualization using `ggplot` is available in [this playlist](https://bit.ly/3rrzzqV).
 
