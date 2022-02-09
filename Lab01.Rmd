@@ -1,5 +1,5 @@
 ---
-title: "Lab 01 - Introduction"
+title: "Lab + Numeric Literacy 01"
 subtitle: Individual assignment
 date: 'Due: February 13 at 23:59'
 ---
@@ -69,8 +69,19 @@ library(kableExtra)
 
 ```
 
+# Lab 1: Introduction to R and RMarkdown
 
-Welcome to your first lab report specifications! 
+Welcome to your first lab report specification! 
+
+
+::: { .SPSS }
+
+*Notice* 
+
+Below you will find the numeric analysis. Kindly submit both assignments, combined in one final report. 
+
+:::
+
 
 
 <div class="column-right-text-left">
@@ -99,7 +110,7 @@ output:
 ---
 ```
 
-## Exercise 1: Introduce yourself  using RMarkdown
+### Exercise 1: Introduce yourself  using RMarkdown
 
 <div style= "float:right;position: relative; margin-left: 10px">
 
@@ -108,17 +119,11 @@ knitr::include_graphics("images/Ofers nieces.jpeg")
 ```
 </div>
 
-Take a picture of yourself, your cat or something else that is personal to you.
-Then Write a little introduction about your relationship with statistics and
-sustainable organisations. Do you have any background in statistics? How would
-learning statistics benefit you in the future?
+Take a picture of yourself, your cat or something else that is personal to you. Then Write a little introduction about your relationship with statistics. Did you ever study it or thought of studying it? Do you have any background in statistics? Do you think learning it may benefit you in the future? 
 
 
 
-Do you reckon that you will remember anything from the course in a year's time?
-How about two years time? Or more? You can use this introduction in order to
-show-off the skills that you've learned. For example, you could experiment
-with:
+Do you reckon that you will remember anything from the course in a year's time? How about two years time? Or more? You can use this introduction in order to show-off the skills that you've learned. For example, you could experiment with:
 
 * The use of [nested
 lists](https://commonmark.org/help/tutorial/10-nestedLists.html)
@@ -141,7 +146,7 @@ For this exercise, you need to submit a text introducing yourself and making use
 
 
 
-## Exercise 2: Manually presenting tables with data
+### Exercise 2: Manually presenting tables with data
 
 <div style= "float:right;position: relative; margin-left: 10px">
 ```{r fig.margin = TRUE, fig.cap = "Variable types",  out.width=300}
@@ -220,7 +225,7 @@ Notice that in a scatter-plot, both the `x-axis` and the `y-axis` **must** refer
 
 
 
-## Exercise 3: using mathematical notation in RMarkdown
+### Exercise 3: using mathematical notation in RMarkdown
 
 In this exercise we will want to use [mathematical
 notation](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html) in
@@ -284,12 +289,12 @@ You will then calculate the sum of the sequence in two different ways: first dir
 
 
 <div style= "float:right;position: relative; margin-left: 10px">
-<!-- </div> -->
+
 ```{r fig.margin = TRUE, fig.cap = "DO's and DONT'S in lab reports", fig.align="right", out.width=450}
 knitr::include_graphics("images/FinalLabSpecs.jpg")
 ```
 </div>
-## `r emo::ji("heavy_check_mark")` DO
+### `r emo::ji("heavy_check_mark")` DO
 * Make sure your submission consists of a self-contained zip-file with a
 RMarkdown file and all necessary resources to knit it smoothly
 * Include a knitted pdf or an html file with your report
@@ -298,10 +303,55 @@ RMarkdown file and all necessary resources to knit it smoothly
 * All the R- Code is contained within code-chunks
 
 
-## `r emo:: ji("cross_mark")` DO NOT
+### `r emo:: ji("cross_mark")` DO NOT
 * DO NOT show irrelevant code, data, messages or warnings in your report
 * Where possible, avoid hard coding numbers into your
 text. Instead, calculations are made 'on the fly'
 
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+# Numeric literacy: Covid and non-covid related death
+
+Please study the graph below carefully, read the explanation and answer the questions below: 
+
+
+<!-- <div class="column-full"> -->
+<!-- </div> -->
+```{r numeric-lit ,fig.cap = "US, non-covid-related deaths among the vaccinated and the unvaccinated Dec 2020-Jul 2021", fig.align="center", out.width=800}
+knitr::include_graphics("images/economist-num-lit01.jpg")
+```
+
+
+<!-- </div> -->
+
+
+It was over a year ago that Pfizer and BioNTech announced the first promising results from a clinical trial of a covid-19 vaccine. Now [a recent report](https://bit.ly/3oEFfvQ) from the Centres for Disease Control (CDC) in America has produced a novel, and even mysterious, reason to be glad for a covid-19 vaccination. The CDC data show that people vaccinated with the Pfizer or Moderna covid-19 jabs are *one-third* as likely to die of other causes too.
+
+
+The result is bewildering, all the more so for its scale. The CDC’s study started with the health records of more than 11m Americans, showing that, after removing deaths associated with covid-19, and removing the influence of  demographic factors such as age and sex, people who had been jabbed were far likelier to have survived. Those who had been double-jabbed with either Pfizer or Moderna vaccines had an average non-covid-related mortality rate of roughly 0.35 per 100 person-years (meaning that between three and four people would be expected to die out of 1,000 monitored for a year.) 
+
+For the unvaccinated, the mortality rate was *more than three* times as high. The pattern held across all races and ethnicities, and in most of the age groups, even as overall mortality rates changed.
+
+### Questions: 
+
+1. What do you notice?
+    
+    After studying the graph and reading the text, what details do you see in the graph that are unusual or surprising? Looking at it carefully and paying attention to detail, what can you get out of the graph that is not necessarily obvious at first glance
+    
+2. What do you wonder? 
+    
+    Try to formulate a question, related to the graph, something that you would genuinely like to know. Please state your question clearly: as in a statement that ends with a question mark. 
+    
+3. How does this relate to you and your community?
+
+    Think of something that makes this graph relate to you personally or to your community, however defined. Make sure that you *do not* talk about something that relates the graph to everyone, no matter who they are, but only to members of *your* community, something *specific* that does not related to other communities.  
+    
+4. BONUS: What’s going on in this graph? Create a catchy headline that captures the graph’s main idea.
 
 

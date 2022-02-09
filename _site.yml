@@ -8,10 +8,10 @@ navbar:
     - text: "Overview"
       icon: fa-home
       href: index.html
-    - text: "Labs"
+    - text: "Lab + Numeric Litrcy"
       icon: fa-flask
       menu:
-        - text: "Lab 1"
+        - text: "Lab + NL 1"
           href: Lab01.html
         - text: "To be continued..."
         #   href: Lab02.html
@@ -24,10 +24,10 @@ navbar:
         - text: "RA 1"
           href: https://bit.ly/3LgtAgq
         - text: "To be continued..."
-    - text: "Numeric Lit"
-      icon: fa-line-chart 
-      menu:
-        - text: "TBD..."
+    # - text: "Numeric Lit"
+    #   icon: fa-line-chart 
+    #   menu:
+    #     - text: "TBD..."
 output:
   html_document:
     theme: flatly
