@@ -95,7 +95,8 @@ To learn more about different types of variables, please watch [this short video
 </div>
 
 * A step by step video with instructions on how to do this lab is available on [Perusall](https://app.perusall.com/courses/grl-2a-statistics-i/orgs-lab-1a-377619530?assignmentId=xd9T78P38HY7noXh7&part=1).
-* Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLScTCQ-fnSp952ahYedG3ivZmP0BeeraFJW6iYXSD1mKo26sZQ/viewform).   
+* Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLScTCQ-fnSp952ahYedG3ivZmP0BeeraFJW6iYXSD1mKo26sZQ/viewform).  
+* Would you like to use one of your tokens for an extension or an upgrade from $R \rightarrow M$ ? Please fill in [this form](https://bit.ly/3Lx6Xo4).  
 * If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
 This document defines  the specifications you need to meet in your report. You will create a project in RStudio, which will consist of a folder with your various resources: write your report in `rmarkdown`, and zip the entire folder by the deadline. The output format and other meta-information can be  specified in the YAML, at the beginning of your R Markdown document, as follows:
