@@ -175,12 +175,10 @@ An introduction to visualization using `ggplot` is available in [this playlist](
 
 For RMarkdown, have a look at [piping hot data](https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/)
 
-You may work and submit your assignments using any  statistical software including SPSS, STATA, Python, SCALA or Julia. However, as R is becoming the lingua franca of data science in many academic circles, this is going to be the default technology used in this course. 
 
 
 ```{r penguins, fig.width=4}
 
-# include_graphics("images/course-structure.jpg")
 include_graphics("images/index-penguins.jpg")
 
 ```

@@ -1,5 +1,5 @@
 ---
-title: 'Organisations Lab 2'
+title: 'Statistics I: Lab 2'
 author: "Your Name"
 date: "The Date"
 output:
@@ -20,7 +20,9 @@ library(datasauRus)
 
 ```
 
+# Lab 2
 
+Below you can find my solutions to the lab 2
 
 
 ## Exercise 1: Using HELP
@@ -87,4 +89,31 @@ Finally: use the [DrawMyData](http://robertgrantstats.co.uk/drawmydata.html) too
 
 
 ```
+
+
+# Numeric literacy 
+
+1. What do I notice?
+
+ANSWER: YOUR ANSWER HERE. 
+
+
+2. What do I wonder?
+ANSWER: YOUR ANSWER HERE. 
+
+
+3. How does this relate to me or my community?
+
+ANSWER: YOUR ANSWER HERE. 
+
+
+1. Catchy headline?
+
+ANSWER: YOUR ANSWER HERE. 
+
+
+
+1. What do I notice?
+
+ANSWER: YOUR ANSWER HERE. 
 
