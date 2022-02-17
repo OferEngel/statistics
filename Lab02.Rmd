@@ -91,9 +91,9 @@ knitr::include_graphics("images/vguide.png")
 
 </div>
 
-* To jump-start your lab, please download the zip file from here. [TBD]
+* To jump-start your lab, please download the zip file from [here](https://github.com/OferEngel/statistics/raw/master/backup/Lab%2002/MY-NAME-HERE-Lab-02.zip). 
 * A step by step video with instructions on how to do this lab [is available](https://app.perusall.com/courses/grl-2a-statistics-i/orgs-lab-2a?assignmentId=pC5mbRCxgWRxmmiAk&part=1) on Perusall.
-* Please submit your lab using a link that will be available here [TBD].  
+* Please submit your lab using a link that will be available [here](https://docs.google.com/forms/d/e/1FAIpQLSfhcjfWP3bu5DGQB4wDfaEZ0OjSIJ7r-fkvlYSpP5n3Df9DsQ/viewform).  
 * Would you like to use one of your tokens for an extension or an upgrade from $R \rightarrow M$ ? Please fill in [this form](https://bit.ly/3Lx6Xo4).
 * If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
@@ -201,7 +201,7 @@ bullseye %>% summarise(mean.x=mean(x), mean.y=mean(y),
 
 ```
 
-2. Choose four different datasets from `datasaurus_dozen`, and create a plot for each of the four datasets. 
+2. Choose four different datasets from `datasaurus_dozen`, and create a plot for each of the four datasets. Knit your RMarkdown file, and confirm that the graphs show fully in your report,that they are compact and that your report appears neat and tidy. 
 
 3. Create a table with summary statistics for each of the four datasets. You will have a row for each dataset, and a column for each summary statistics, consisting of the means of x and y, the standard deviations of x and y, the correlation between x and y and the sample size. To create the table - you can use the code below and adapt it!
 
