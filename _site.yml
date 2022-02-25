@@ -22,12 +22,12 @@ navbar:
         # - text: "Lab 3"
         #   href: Lab03.html
         # - text: "Lab 4"
-    - text: "Rdness Assrnce"
-      icon: fa-question-circle
-      menu:
-        - text: "RA 1"
-          href: https://bit.ly/3LgtAgq
-        - text: "To be continued..."
+    # - text: "Rdness Assrnce"
+    #   icon: fa-question-circle
+    #   menu:
+    #     - text: "RA 1"
+    #       href: https://bit.ly/3LgtAgq
+    #     - text: "To be continued..."
     # - text: "Numeric Lit"
     #   icon: fa-line-chart 
     #   menu:

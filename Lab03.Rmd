@@ -93,7 +93,7 @@ knitr::include_graphics("images/nobel.jpg")
 </div>
 
 <!-- * A step by step video with instructions on how to do this lab [is available](https://app.perusall.com/courses/grl-2a-statistics-i/orgs-lab-2a?assignmentId=pC5mbRCxgWRxmmiAk&part=1) on Perusall. -->
-* Please submit your lab using a link that will be available here.  
+* Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLSfcpbe4S3SMUCY7SMLU-tAcobF6XbawKpDjpGYDa6PVlYZn1w/viewform).  
 * Would you like to use one of your tokens for an extension or an upgrade from $R \rightarrow M$ ? Please fill in [this form](https://bit.ly/3Lx6Xo4).
 * If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
