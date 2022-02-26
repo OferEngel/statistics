@@ -239,7 +239,7 @@ This means you'll need to define this data frame in your R Markdown document, ev
 ### But of those US-based Nobel laureates, many were born in other countries
 
 ::: { .SPSS}
-**Hint:** You should be able to ~~cheat~~ borrow from code you used earlier to create the `country_us` variable.
+**Hint:** You should be able to borrow from code you used earlier to create the `country_us` variable.
 :::
 
 4.  Create a new variable called `born_country_us` that has the value `"USA"` if the laureate is born in the US, and `"Other"` otherwise.
@@ -253,8 +253,21 @@ This means you'll need to define this data frame in your R Markdown document, ev
     -   Within each facet, there should be a bar for whether the laureate won the award in the US or not.
     -   Each bar should have segments for whether the laureate was born in the US or not.
 
-<br/>
-<br/>
+```{r bar-and-segments, echo=FALSE, fig.height=3, fig.width=8}
+
+nobel %>%
+  filter(!is.na(country),gender != "org",is.na(died_date)) %>% 
+  mutate(country_us = if_else(country == "USA", "USA", "Other"),
+         born_country_us = if_else(born_country == "USA", "USA", "Other")) %>% 
+  ggplot(aes(fill=born_country_us, x=country_us)) + 
+  geom_bar() + 
+  scale_fill_manual(name="country of birth", 
+                    values=c("#E69F00", "#56B4E9")) +
+  facet_wrap(~category, nrow=1) + labs(x="") + coord_flip() + 
+  theme(legend.position = "bottom")
+  
+
+```
 
 
 ### Here's where those immigrant Nobelists were born
@@ -267,7 +280,6 @@ Note that your bar plot won't exactly match the one from the Buzzfeed article. T
 
 
 6.  In a single pipeline, filter for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the `count()` function) for their birth country (`born_country`) and arrange the resulting data frame in descending order of number of observations for each country. Which country is the most common?
-
 
 Now go back through your write up to make sure you've answered all questions and all of your R chunks are properly labelled. Each chunk must have a different label, or else you will get an error and won't be able to knit. 
 
@@ -285,6 +297,11 @@ You're not expected to recreate them as part of your assignment, but you're welc
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+
+
 
 # Numeric literacy: Levelling up at gunpoint
 
@@ -323,3 +340,4 @@ Next, the paper measured current levels of economic development within 30km of p
     Think of something that makes this graph relate to you personally or to your community, however defined. Make sure that you *do not* talk about something that relates the graph to everyone, no matter who they are, but only to members of *your* community, something *specific* that does not related to other communities. This is your opportunity to be creative!  
     
 4. What’s going on in this graph? Write a catchy headline that captures the graph’s main idea.
+

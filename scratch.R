@@ -19,6 +19,9 @@ ggplot() + geom_point(aes(x=seq(1,5000, b=10), myf(seq(1,5000, b=10))))+
   labs(x="Friends", y="Probability")
 
 
+
+
+
 penguins <- penguins %>% na.omit(sex)
 
 ggplot(penguins, 
@@ -30,4 +33,27 @@ ggplot(penguins,
 
 
 
+
+dat_raw <- haven::read_sav(here::here( "data", 
+                                       "sadc_2017_national.sav"))
+foreign::read.spss(here::here( "data", 
+                               "sadc_2017_national.sav"))
+
+
+
+library(tidyverse)
+nobel <- read.csv("https://bit.ly/3Ikf3i0")
+
+
+nobel %>%
+  filter(!is.na(country),gender != "org",is.na(died_date)) %>% 
+  mutate(country_us = if_else(country == "USA", "USA", "Other"),
+         born_country_us = if_else(born_country == "USA", "USA", "Other")) %>% 
+  ggplot(aes(fill=born_country_us, x=country_us)) + 
+  geom_bar() + 
+  scale_fill_manual(name="country of birth", 
+                    values=c("#E69F00", "#56B4E9")) +
+  facet_wrap(~category) + labs(x="") + coord_flip() + 
+  theme(legend.position = "bottom")
+  
 
