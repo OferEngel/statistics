@@ -53,7 +53,7 @@ nobel %>%
   geom_bar() + 
   scale_fill_manual(name="country of birth", 
                     values=c("#E69F00", "#56B4E9")) +
-  facet_wrap(~category) + labs(x="") + coord_flip() + 
+  facet_wrap(~category, nrow=1) + labs(x="") + coord_flip() + 
   theme(legend.position = "bottom")
   
 

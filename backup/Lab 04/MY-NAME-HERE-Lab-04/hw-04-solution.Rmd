@@ -1,5 +1,5 @@
 ---
-title: "Organisations Lab 4"
+title: "Statistics I: Lab 4"
 author: "Your Name"
 date: "The Date"
 output:
