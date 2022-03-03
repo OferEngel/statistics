@@ -383,7 +383,7 @@ $(document).ready(function () {
 <p>As usual, you have the following resources available to you:</p>
 <ul>
 <li>A step by step video with instructions on how to do this lab will be available on Perusall.</li>
-<li>A template for this lab will be available here to jump start your report.</li>
+<li>A template for this lab is available <a href="https://github.com/OferEngel/statistics/raw/master/backup/Lab%2004/MY-NAME-HERE-Lab%2004.zip">here</a> to jump start your report.</li>
 <li>Please submit your lab using <a href="https://docs.google.com/forms/d/e/1FAIpQLScnUi56_TA24O4s9zR3v_6gIo_3QZG9ty6F0zl8PnVEAC8ppA/viewform">this link</a>.</li>
 <li>If you have questions, please <a href="https://bit.ly/OferMeet">book a slot</a> during Ofer’s office hours!</li>
 </ul>
@@ -425,18 +425,22 @@ $(document).ready(function () {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">12.5</span>, <span class="sc">-</span><span class="fl">29.6</span>,</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">15.1</span>, <span class="fl">4.4</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">kbl</span>(<span class="at">align=</span><span class="st">&quot;c&quot;</span>) </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>df)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">kbl</span>(<span class="at">align=</span><span class="st">&quot;c&quot;</span>) </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>df)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
 <div style="float:right;position: relative; margin-left: 100px">
 <p><img src="images/Desmos06.jpg" width="300" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <p>The command <code>lm(y~x,data=df)</code> calculates the slope and intercept of the model, the test-statistics, their p-values, the <span class="math inline">\(R^2\)</span> and related information. When you write the formula <code>y~x</code>, you are telling R that <span class="math inline">\(y\)</span> is the outcome (dependent) variable and <span class="math inline">\(x\)</span> is the explanatory (independent variable).</p>
 <p>Below you can compare the results I got in R to the results I got on the <a href="https://www.desmos.com/calculator">desmos platform</a>. You can see that I got very similar results. Hooray!</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Now copy the data you created into your RMarkdown and present it in a neat table, one column for your x variable and one for your y variable. Create a scatter-plot with the points and the regression line, and then run a regression model for your data. Compare the results (the slope, intercept and the <span class="math inline">\(R^2\)</span>) to the results shown in the <a href="https://www.desmos.com/calculator">desmos platform</a>.</p></li>
-<li><p>Try now to create a dataset that can be fit with the exact same model (i.e, with the same <em>slope</em> and <em>intercept</em>), but this time try to choose the data in such a way that the <span class="math inline">\(R^2\)</span> would be dramatically different (e.g. 50% larger or 50% smaller, than the one you had in the previous model). Now present a neat table with the six data points and run the regression model in R. Confirm that your slope, intercept and <span class="math inline">\(R^2\)</span> are what you expected them to be.</p></li>
+<li><p>Now copy the data you created into your RMarkdown and present it in a neat table, one column for your x variable and one for your y variable.</p>
+<ul>
+<li>Create a scatter-plot with the points and the regression line, and then run a regression model for your data. Compare the results (the slope, intercept and the <span class="math inline">\(R^2\)</span>) to the results shown in the <a href="https://www.desmos.com/calculator">desmos platform</a>.</li>
+</ul></li>
+<li><p>Try now to create a dataset that can be fit with the exact same model (i.e, with the same <em>slope</em> and <em>intercept</em>), but this time try to choose the data in such a way that the <span class="math inline">\(R^2\)</span> would be dramatically different (e.g. 50% larger or 50% smaller, than the one you had in the previous model). Now present a neat table with your data points and run the regression model in R. Confirm that your slope, intercept and <span class="math inline">\(R^2\)</span> are what you expected them to be.</p></li>
 </ol>
 <div style="float:right;position: relative; margin-left: 20px">
 <p><img src="images/penguins.png" width="300" style="display: block; margin: auto 0 auto auto;" /></p>

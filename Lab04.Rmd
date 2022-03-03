@@ -31,7 +31,7 @@ This week we are going to venture into the wonderful world of regression analysi
 As usual, you have the following resources available to you:
 
 * A step by step video with instructions on how to do this lab will be available on Perusall.
-* A template for this lab will be available here to jump start your report.
+* A template for this lab is available [here](https://github.com/OferEngel/statistics/raw/master/backup/Lab%2004/MY-NAME-HERE-Lab%2004.zip) to jump start your report.
 * Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLScnUi56_TA24O4s9zR3v_6gIo_3QZG9ty6F0zl8PnVEAC8ppA/viewform).
 * If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
@@ -84,6 +84,7 @@ ggplot() + geom_abline(intercept=3, slope=-1.2, color="red") +
 knitr::include_graphics("images/Desmos01.jpg")
 ```
 </div>
+
 Finally, we are going to use the [desmos platform](https://www.desmos.com/calculator), in order to create our dataset. What you want to do is to click on the hamburger on the top left side of the screen, choose the linear regression tool and open it. You will see six green dots on the graph, each dot is a data point whose $x$ and $y$ coordinates are visible in the table on the left part of the screen. You can now click-and-drag the green dots and move them around, changing the coordinates of the data point. When you move the dot, you can see that the regression line will move  accordingly, minimizing its distance to the data points (more precisely, minimizing the square of the residuals). Now try to move the dots, such, that you will have a line with the intercept and slope you've chosen in question 1. I got the picture below. Notice that the data can be fit with a model that has the slope and the intercept I've chosen before. Also, notice the value of $R^2$   
 
 
@@ -107,6 +108,7 @@ df <- tribble(
   12.5,	-29.6,
   15.1,	4.4,
 ) 
+
 df %>% kbl(align="c") 
 
 mdl <- lm(y~x,data=df)
@@ -123,11 +125,11 @@ The command `lm(y~x,data=df)` calculates the slope and intercept of the model, t
 
 Below you can compare the results I got in R to the results I got on the [desmos platform](https://www.desmos.com/calculator). You can see that I got very similar results. Hooray! 
 
-2. Now copy the data you created into your RMarkdown and present it in a neat table, one column for your x variable and one for your y variable. Create a scatter-plot with the points and the regression line, and then run a regression model for your data. Compare the results (the slope, intercept and the $R^2$) to the results shown in the [desmos platform](https://www.desmos.com/calculator).
+2. Now copy the data you created into your RMarkdown and present it in a neat table, one column for your x variable and one for your y variable. 
+    
+    * Create a scatter-plot with the points and the regression line, and then run a regression model for your data. Compare the results (the slope, intercept and the $R^2$) to the results shown in the [desmos platform](https://www.desmos.com/calculator).
 
-3. Try now to create a dataset that can be fit with the exact same model (i.e, with the same  *slope* and *intercept*), but this time  try to choose the data in such a way that the $R^2$ would be dramatically different (e.g. 50% larger or 50% smaller, than the one you had in the previous model). Now present a neat table with the six data points and run the regression model in R. Confirm that your slope, intercept and $R^2$ are what you expected them to be.
-
-
+3. Try now to create a dataset that can be fit with the exact same model (i.e, with the same  *slope* and *intercept*), but this time  try to choose the data in such a way that the $R^2$ would be dramatically different (e.g. 50% larger or 50% smaller, than the one you had in the previous model). Now present a neat table with your data points and run the regression model in R. Confirm that your slope, intercept and $R^2$ are what you expected them to be.
 
 <div style= "float:right;position: relative; margin-left: 20px">
 ```{r penguins, echo=FALSE, fig.align="right", out.width=300}

@@ -36,10 +36,17 @@ library(kableExtra)
 
 2. Now copy the data you created into your RMarkdown and present it in a neat table, one column for your x variable and one for your y variable. 
 
+    * Create a scatter-plot with the points and the regression line, and then run a regression model for your data. Compare the results (the slope, intercept and the $R^2$) to the results shown in the [desmos platform](https://www.desmos.com/calculator).
+
 ```{r neat-table}
 # Please create your table here!
 
 
+# Please create your scatter plot here:
+# Remove the # hash from the following lines 
+# ggplot(____, aes(__,__)) + 
+#   geom_point() + 
+#   geom_smooth(method="lm")
 
 
 ```
@@ -50,10 +57,14 @@ Run the regression model and compare the results (the slope, intercept and the $
 
 ```{r regression-model}
 # Please use the data you've created, to fit a regression model.
+
 # Then show the results of your model
 
 
 ```
+
+
+
 
 
 Would you say that your slope and intercept are significantly different from zero? What does that mean? Please explain your answer. 
@@ -62,7 +73,7 @@ Would you say that your slope and intercept are significantly different from zer
 
 
 
-Calculate the correlation between x and y, and compare the square of the correlation to $R^2$. Find the place in the book that describes the relationship between the correlation coefficient and $R^2$ in regression models that have only one independent variable (aka univariate regression model).
+Calculate the correlation between x and y, and compare the square of the correlation to $R^2$ from your linear regression model.
 
 *Answer:* SAY SOMETHING HERE
 
