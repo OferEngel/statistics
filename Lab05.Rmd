@@ -98,6 +98,7 @@ Source: [UCI Machine Learning Repository - Bike Sharing Dataset](http://archive.
 As usual, you have the following resources available to you:
 
 * Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLScdl0x6KpCUtDSZoCkojeDCLbtLMxE7-60VjNR8Aeqa2ho2yA/viewform).
+* Would you like to use one of your tokens for an extension or an upgrade from $R \rightarrow M$ ? Please fill in [this form](https://bit.ly/3Lx6Xo4).
 * If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
 
