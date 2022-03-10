@@ -128,10 +128,12 @@ The original data sources are taken from [capital bikeshare](http://capitalbikes
 
 5.  Calculate raw temperature, feeling temperature, humidity, and windspeed as their values given in the dataset multiplied by the maximum raw values stated in the codebook for each variable. Instead of over-writing  the existing variables, create new ones with concise but informative names.
 
+<br/>
+
 6.  Check that the sum of `casual` and `registered` adds up to `cnt` for each record. In your report, show the code you used in order to do verify this, and explain how you know that the two columns really add up to the third. You can fill in the code snippet below: 
 
 
-```{r wrangling, warning=FALSE, include=FALSE}
+```{r wrangling}
 
 bikes <- bikes %>% 
   # for q1 
@@ -174,7 +176,6 @@ bikes <- bikes %>%
 ```
 
 
-
 ::: { .SPSS }
 
 One way of doing this is to create a new column that takes on the value `TRUE` if they add up and `FALSE` if not, and then checking if all values in that column are `TRUE`s.
@@ -184,11 +185,7 @@ But this is only one way, you might come up with another.
 :::
 
 
-
-
-<br/>
-
-```{r wrangling-show, echo=TRUE, eval=FALSE, out.width=10}
+```{r wrangling-show, echo=TRUE, eval=FALSE}
 
 
 bikes <- bikes %>% 
@@ -241,11 +238,6 @@ bikes %>%
 
 🧶 *Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.*
 
-<br/>
-<br/>
-<br/>
-
-
 ### Exploratory data analysis
 
 7.  Recreate the following visualization, and interpret it in context of the data. **Hint:** You will need to use one of the variables you created above. The temperature plotted is the *feeling temperature*.
@@ -281,7 +273,7 @@ ggplot(bikes, aes(x = ___, y = ___, color = raw.atemp)) +
 
 8.  Create a visualization displaying the relationship between bike rentals and season. *Interpret* the plot in context of the data. Your plot could look like the following:
 
-```{r  echo=FALSE, eval=TRUE}
+```{r  echo=FALSE, eval=FALSE}
 
 ggplot(bikes, aes(x = season, y = cnt, color = raw.atemp)) +
     geom_boxplot() +
@@ -317,31 +309,7 @@ ggplot(bikes, aes(x = season, y = cnt, color = raw.atemp)) +
 
 <br/>
 
-<br/>
-
-### Bonus questions: 11 - 15
-
-11. Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed. Show the estimated slopes and interecept. Record adjusted $R^2$ of the model.
-
-
-```{r}
-
-mdl <- lm(cnt ~ season + yr + holiday +
-            workingday + weathersit + raw.temp + raw.hum + raw.windspeed, bikes)
-
-
-```
-
-
-::: { .SPSS }
-
-To do this question, you need to estimate a model that has multiple independent variables (aka explanatory variables). The equation would look as follows:
-
-$$
-Y_{rentals}=b_0+b_1\cdot X_{season}+b_2\cdot X_{yr}~+b_3\cdot~X_{h.day}+b_4\cdot X_{wk.day}+ b_5\cdot X_{weather}+b_6\cdot X_{r.temp}+b_7\cdot X_{hum}+b_8\cdot X_{wind}
-$$
-:::
-
+11. *Bonus question* Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday. Record adjusted $R^2$ of the model.
 
 12. Write the linear models for holidays and non-holidays.
     
@@ -350,8 +318,14 @@ $$
 
 <br/>
 
-13. Interpret the slopes of the different seasons.
+13. Interpret the slopes of season and feeling temperature.
+    
+    a. If the slopes are different for holidays and non-holidays, make sure to interpret both.
+    b. If the variable has multiple levels, make sure you interpret all of the slope coefficients associated with it.
 
+<br/>
+
+14. Interpret the intercept. If the intercept is different for holidays and non-holidays, make sure to interpret both.
 
 <br/>
 
@@ -360,9 +334,6 @@ $$
 
 🧶 *Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.*
 
-<br/>
-<br/>
-<br/>
 <br/>
 <br/>
 <br/>

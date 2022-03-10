@@ -43,6 +43,100 @@
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -374,45 +468,115 @@ $(document).ready(function () {
 </ol>
 <p><br/></p>
 <ol start="5" style="list-style-type: decimal">
-<li>Calculate raw temperature, feeling temperature, humidity, and windspeed as their values given in the dataset multiplied by the maximum raw values stated in the codebook for each variable. Instead of over-writing the existing variables, create new ones with concise but informative names.</li>
-</ol>
-<p><br/></p>
-<ol start="6" style="list-style-type: decimal">
-<li>Check that the sum of <code>casual</code> and <code>registered</code> adds up to <code>cnt</code> for each record.</li>
+<li><p>Calculate raw temperature, feeling temperature, humidity, and windspeed as their values given in the dataset multiplied by the maximum raw values stated in the codebook for each variable. Instead of over-writing the existing variables, create new ones with concise but informative names.</p></li>
+<li><p>Check that the sum of <code>casual</code> and <code>registered</code> adds up to <code>cnt</code> for each record. In your report, show the code you used in order to do verify this, and explain how you know that the two columns really add up to the third. You can fill in the code snippet below:</p></li>
 </ol>
 <div class="SPSS">
 <p>One way of doing this is to create a new column that takes on the value <code>TRUE</code> if they add up and <code>FALSE</code> if not, and then checking if all values in that column are <code>TRUE</code>s.</p>
 <p>But this is only one way, you might come up with another.</p>
 </div>
+<p><br/></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="ot">&lt;-</span> bikes <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for q1 </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">season=</span><span class="fu">fct_recode</span>(<span class="fu">factor</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># level 2 (spring) must be first!     </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    season, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;4&quot;</span>,<span class="st">&quot;1&quot;</span>)),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rename the different levels</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;spring&quot;</span><span class="ot">=</span><span class="st">&quot;2&quot;</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;______&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;______&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;______&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for q2 </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">holiday=</span><span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(___),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">workingday=</span><span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(___),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for q3 </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr=</span><span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(___),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for q4</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weathersit=</span><span class="fu">fct_recode</span>(<span class="fu">as.factor</span>(___),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span>, </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;___&quot;</span><span class="ot">=</span><span class="st">&quot;_&quot;</span> )) <span class="sc">%&gt;%</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for q5</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">raw.temp=</span>temp<span class="sc">*</span><span class="dv">39</span>, </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>         <span class="at">raw.atem=</span>___<span class="sc">*</span>___, </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>         <span class="at">raw.hum =</span>___<span class="sc">*</span>___, </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>         <span class="at">raw.windspeed=</span>___<span class="sc">*</span>___) </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="do">#########</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># for q6 </span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span> </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is.true =</span> (cnt <span class="sc">==</span> ___ <span class="sc">+</span> ___)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(is.true) <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code></pre></div>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
+<p><br/> <br/> <br/></p>
 </div>
 <div id="exploratory-data-analysis" class="section level3">
 <h3>Exploratory data analysis</h3>
 <ol start="7" style="list-style-type: decimal">
-<li>Recreate the following visualization, and interpret it in context of the data. <strong>Hint:</strong> You will need to use one of the variables you created above. The temperature plotted is the feeling temperature.</li>
+<li>Recreate the following visualization, and interpret it in context of the data. <strong>Hint:</strong> You will need to use one of the variables you created above. The temperature plotted is the <em>feeling temperature</em>.</li>
 </ol>
 <p><img src="Lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>You may want to use the code below, just make sure to fill in the missing expressions!</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bikes, <span class="fu">aes</span>(<span class="at">x =</span> ___, <span class="at">y =</span> ___, <span class="at">color =</span> raw.atemp)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">title    =</span> <span class="st">&quot;______________&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">&quot;______________&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">x        =</span> <span class="st">&quot;______________&quot;</span>,,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">y        =</span> <span class="st">&quot;______________&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">color    =</span> <span class="st">&quot;______________&quot;</span>) </span></code></pre></div>
 <ol start="8" style="list-style-type: decimal">
-<li>Create a visualization displaying the relationship between bike rentals and season. Interpret the plot in context of the data.</li>
+<li>Create a visualization displaying the relationship between bike rentals and season. <em>Interpret</em> the plot in context of the data. Your plot could look like the following:</li>
 </ol>
+<p><img src="Lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
 </div>
 <div id="modelling" class="section level3">
 <h3>Modelling</h3>
 <ol start="9" style="list-style-type: decimal">
-<li>Fit a linear model predicting total daily bike rentals from daily temperature. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>.</li>
+<li><p>Fit a linear model predicting total daily bike rentals from daily temperature.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write the linear model,</li>
+<li>Interpret the slope and the intercept in context of the data.</li>
+<li>Determine and interpret the <span class="math inline">\(R^2\)</span>.</li>
+</ol></li>
 </ol>
 <p><br/></p>
 <ol start="10" style="list-style-type: decimal">
 <li><p>Fit another linear model predicting total daily bike rentals from daily feeling temperature.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>.</li>
-<li>Is temperature or feeling temperature a better predictor of bike rentals? Explain your reasoning.</li>
+<li><p>Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>.</p></li>
+<li><p>Is temperature or feeling temperature a better predictor of bike rentals? Explain your reasoning.</p></li>
 </ol></li>
 </ol>
 <p><br/></p>
+<p><br/></p>
+</div>
+<div id="bonus-questions-11---15" class="section level3">
+<h3>Bonus questions: 11 - 15</h3>
 <ol start="11" style="list-style-type: decimal">
-<li><p>Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday. Record adjusted <span class="math inline">\(R^2\)</span> of the model.</p></li>
+<li>Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed. Show the estimated slopes and interecept. Record adjusted <span class="math inline">\(R^2\)</span> of the model.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(cnt <span class="sc">~</span> season <span class="sc">+</span> yr <span class="sc">+</span> holiday <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            workingday <span class="sc">+</span> weathersit <span class="sc">+</span> raw.temp <span class="sc">+</span> raw.hum <span class="sc">+</span> raw.windspeed, bikes)</span></code></pre></div>
+<div class="SPSS">
+<p>To do this question, you need to estimate a model that has multiple independent variables (aka explanatory variables). The equation would look as follows:</p>
+<p><span class="math display">\[
+Y_{rentals}=b_0+b_1\cdot X_{season}+b_2\cdot X_{yr}~+b_3\cdot~X_{h.day}+b_4\cdot X_{wk.day}+ b_5\cdot X_{weather}+b_6\cdot X_{r.temp}+b_7\cdot X_{hum}+b_8\cdot X_{wind}
+\]</span></p>
+</div>
+<ol start="12" style="list-style-type: decimal">
 <li><p>Write the linear models for holidays and non-holidays.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Is the slope of temperature the same or different for these two models?</li>
@@ -421,29 +585,21 @@ $(document).ready(function () {
 </ol>
 <p><br/></p>
 <ol start="13" style="list-style-type: decimal">
-<li><p>Interpret the slopes of season and feeling temperature.</p>
-<ol style="list-style-type: lower-alpha">
-<li>If the slopes are different for holidays and non-holidays, make sure to interpret both.</li>
-<li>If the variable has multiple levels, make sure you interpret all of the slope coefficients associated with it.</li>
-</ol></li>
-</ol>
-<p><br/></p>
-<ol start="14" style="list-style-type: decimal">
-<li>Interpret the intercept. If the intercept is different for holidays and non-holidays, make sure to interpret both.</li>
+<li>Interpret the slopes of the different seasons.</li>
 </ol>
 <p><br/></p>
 <ol start="15" style="list-style-type: decimal">
 <li>According to this model, assuming everything else is the same, in which season does the model predict total daily bike rentals to be highest and which to be the lowest?</li>
 </ol>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
-<p><br/> <br/> <br/> <br/> <br/></p>
+<p><br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/></p>
 </div>
 <div id="numeric-literacy-are-meditation-apps-effective" class="section level1">
 <h1>Numeric literacy: Are meditation apps effective?</h1>
 <p>Smartphones are often blamed for contributing to stress and anxiety. But they may be an effective tool for improving mental health, too. Meditation apps such as <a href="https://www.calm.com/">Calm</a> and <a href="https://www.headspace.com/">Headspace</a> provide users with soothing audio, guided meditations and breathing exercises designed to improve mental well-being. A new paper suggests that their impact could be comparable to those of much costlier forms of in-person therapy.</p>
 <p>Advik Shreekumar and Pierre-Luc Vautrey, of the Massachusetts Institute of Technology, recruited 2,384 Americans from Facebook and Instagram to use Headspace. Using a set of detailed mental-health questionnaires, the authors found that, after four weeks, access to the app reduced the share of participants with moderate or severe anxiety by 13 percentage points, or 50%, compared to the control group (who were placed on a waiting list for the app). The share of participants with moderate or severe depression fell by 14 percentage points, or 47%, relative to the control group.</p>
 <p>These results should be interpreted with caution. First, participants in the study were recruited based on their interest in trying Headspace. That resulted in a sample that was younger, more female, more educated and more left-wing than the general population. Nearly 85% of participants were women, 44% held graduate degrees and less than 3% identified as Republicans. Second, the study did not include a placebo. In clinical trials, participants are assigned to receive either the treatment or a placebo. In this study such an approach was “not easily implementable,” the authors wrote, which means the mere thought of receiving an effective treatment could have been enough to ease symptoms.</p>
-<p>The graphs below show the <a href="https://www.youtube.com/watch?v=WZffV55o9T8">cumulative distribution</a> of anxiety and depression scores, according to the Generalized Anxiety Disorder seven-item scale and the Patient Health Questionnaire, respectively.Please study the graph below carefully, read the explanation and answer the questions below:</p>
+<p>The graphs below show the <a href="https://www.youtube.com/watch?v=YXLVjCKVP7U">cumulative distribution</a> of anxiety and depression scores, according to the Generalized Anxiety Disorder seven-item scale and the Patient Health Questionnaire, respectively.Please study the graph below carefully, read the explanation and answer the questions below:</p>
 <!-- <div class="column-full"> -->
 <!-- </div> -->
 <div class="figure" style="text-align: center">
