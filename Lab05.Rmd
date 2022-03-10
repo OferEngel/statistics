@@ -355,7 +355,7 @@ $$
 
 <br/>
 
-15. According to this model, assuming everything else is the same, in which season does the model predict total daily bike rentals to be highest and which to be the lowest?
+14. According to this model, assuming everything else is the same, in which season does the model predict total daily bike rentals to be highest and which to be the lowest?
 
 
 🧶 *Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.*

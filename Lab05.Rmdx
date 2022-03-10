@@ -309,7 +309,13 @@ ggplot(bikes, aes(x = season, y = cnt, color = raw.atemp)) +
 
 <br/>
 
-11. *Bonus question* Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday. Record adjusted $R^2$ of the model.
+### Bonus questions: 11 - 15
+
+11. Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday. Record adjusted $R^2$ of the model.
+
+
+
+
 
 12. Write the linear models for holidays and non-holidays.
     
