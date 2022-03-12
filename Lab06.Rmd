@@ -179,29 +179,11 @@ ggplot(____) +
 ```
 
 
-3. Show a scatter-plot of the height of a painting depending on the painting's width. Because of the skewness of the data, you would want to convert the axis using `scale_x_log10()` and  `scale_y_log10()`. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer ` + geom_abine(slope=___, intercept=___)`. 
-
-    * What does this straight line signify? 
-    * What is the difference between the paintings above and those below the line?
-    * What else do you notice, or wonder about the graph?
-    * BONUS: make the shape of each data point depend on whether the the painting's description mention any type of landscape (See `landsALL` in the [codebook](http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html)).
-
-```{r scatter-show, echo=TRUE, eval=FALSE}
-
-ggplot(_____, aes(x = _____, y = _____)) +
-  geom_point() + 
-  labs(
-    title = "_____",
-    subtitle = "_____",
-    x = "_____",
-    y = "_____"
-  ) 
 
 
+</div>
 
-```
-
-
+<div class="column-right-small">
 
 ```{r scatter, echo=FALSE}
 
@@ -227,6 +209,37 @@ ggplot(aes(x = Width_in, y = Height_in, color=type, shape=factor(shp))) +
 
 
 ```
+</div>
+
+
+<div class="column-full-left">
+
+
+3. Show a scatter-plot of the height of a painting depending on the painting's width. Because of the skewness of the data, you would want to convert the axis using `scale_x_log10()` and  `scale_y_log10()`. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer ` + geom_abine(slope=___, intercept=___)`. 
+
+    * What does this straight line signify? 
+    * What is the difference between the paintings above and those below the line?
+    * What else do you notice, or wonder about the graph?
+    * BONUS: make the shape of each data point depend on whether the the painting's description mention any type of landscape (See `landsALL` in the [codebook](http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html)).
+
+```{r scatter-show, echo=TRUE, eval=FALSE}
+
+ggplot(_____, aes(x = _____, y = _____)) +
+  geom_point() + 
+  labs(
+    title = "_____",
+    subtitle = "_____",
+    x = "_____",
+    y = "_____"
+  ) 
+
+
+
+```
+
+
+
+
 
 
 
@@ -264,17 +277,27 @@ ggplot(aes(x = Width_in, y = Height_in, color=type, shape=factor(shp))) +
 </div>
 
 
-# Numeric literacy: Are meditation apps effective?
+# Numeric literacy: A house [divided](https://en.wikipedia.org/wiki/Lincoln%27s_House_Divided_Speech)?
 
-.Please study the graph below carefully, read the explanation and answer the questions below: 
+Most data on the Russian home front are unreliable. The government has limited freedom of speech and arrested thousands of protesters. A few polls do show support for the war. But the reliability of such polls is moot. The Kremlin has criminalised statements about the war that it deems false. But they still reveal political cleavages and trends over time. One poll found that being young or female, living in a big city, having a degree and not watching tv predicted anti-war views. Support may also be waning. In surveys of internet users in Moscow run by [Alexei Navalny](https://en.wikipedia.org/wiki/Alexei_Navalny), an opposition leader, the share of people blaming Russia surged during the war’s first week.
+
+Another rich source of data is social media. A team at the University of Vermont has built a measure of sentiment on these sites, using frequencies of various words and ratings of the joy or sadness they convey. Applied to Russian-language Twitter, it accurately detects happy moments like New Year’s Eve. And its fluctuations over time line up with those of a conventional poll run by Gallup, an American firm.
+
+This measure finds that Mr Putin has sent Twitter users into deep despair. Mentions of “war”, frowned upon by the Kremlin, have risen sharply, as have “scary”, “ashamed” and “horror”. Overall, posters’ mood has worsened eight times more than at the start of the covid-19 pandemic. Based on past trends, this implies a one-point dip on Gallup’s one-to-ten happiness scale. 
+
+Sources: The Economist, Computational Story Lab; [dorussianswantwar.com](https://www.dorussianswantwar.com/en); [hedonometer.org](hedonometer.org); Qualitas; Twitter; VTsIOM
 
 
-<!-- <div class="column-full"> -->
-<!-- </div> -->
+Please study the graph below carefully, read the explanation and answer the questions below: 
+
+
+<div class="column-full">
+
 ```{r numeric-lit, echo=FALSE, fig.align="center", fig.cap="", out.width=800}
-# knitr::include_graphics("images/mental-apps.jpg")
+knitr::include_graphics("images/russia-happiness.png")
 ```
-
+*Above:* Happiness score of tweets in Russian, average per day. *Below:* Difference in frequency of words in Russian-language posts on Twitter, % Between day Russian troops entered Crimea in 2014 and start of current war in Ukraine, top 50 words
+</div>
 
 
 

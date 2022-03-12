@@ -468,6 +468,12 @@ $(document).ready(function () {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill in the blanks</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(____) <span class="sc">+</span> </span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>____), <span class="at">binwidth =</span> __) <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span></code></pre></div>
+</div>
+</div>
+<div class="column-right-small">
+<p><img src="Lab06_files/figure-html/scatter-1.png" width="672" /></p>
+</div>
+<div class="column-full-left">
 <ol start="3" style="list-style-type: decimal">
 <li><p>Show a scatter-plot of the height of a painting depending on the painting’s width. Because of the skewness of the data, you would want to convert the axis using <code>scale_x_log10()</code> and <code>scale_y_log10()</code>. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer <code>+ geom_abine(slope=___, intercept=___)</code>.</p>
 <ul>
@@ -485,9 +491,7 @@ $(document).ready(function () {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;_____&quot;</span>,</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;_____&quot;</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
-<p><img src="Lab06_files/figure-html/scatter-1.png" width="672" /></p>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
-</div>
 <div id="modelling" class="section level3">
 <h3>Modelling</h3>
 <ol start="4" style="list-style-type: decimal">
@@ -510,11 +514,15 @@ $(document).ready(function () {
 <p><br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/></p>
 </div>
 </div>
-<div id="numeric-literacy-are-meditation-apps-effective" class="section level1">
-<h1>Numeric literacy: Are meditation apps effective?</h1>
-<p>.Please study the graph below carefully, read the explanation and answer the questions below:</p>
-<!-- <div class="column-full"> -->
-<!-- </div> -->
+<div id="numeric-literacy-a-house-divided" class="section level1">
+<h1>Numeric literacy: A house <a href="https://en.wikipedia.org/wiki/Lincoln%27s_House_Divided_Speech">divided</a>?</h1>
+<p>Most data on the Russian home front are unreliable. The government has limited freedom of speech and arrested thousands of protesters. A few polls do show support for the war. But the reliability of such polls is moot. The Kremlin has criminalised statements about the war that it deems false. But they still reveal political cleavages and trends over time. One poll found that being young or female, living in a big city, having a degree and not watching tv predicted anti-war views. Support may also be waning. In surveys of internet users in Moscow run by <a href="https://en.wikipedia.org/wiki/Alexei_Navalny">Alexei Navalny</a>, an opposition leader, the share of people blaming Russia surged during the war’s first week.</p>
+<p>Another rich source of data is social media. A team at the University of Vermont has built a measure of sentiment on these sites, using frequencies of various words and ratings of the joy or sadness they convey. Applied to Russian-language Twitter, it accurately detects happy moments like New Year’s Eve. And its fluctuations over time line up with those of a conventional poll run by Gallup, an American firm.</p>
+<p>This measure finds that Mr Putin has sent Twitter users into deep despair. Mentions of “war”, frowned upon by the Kremlin, have risen sharply, as have “scary”, “ashamed” and “horror”. Overall, posters’ mood has worsened eight times more than at the start of the covid-19 pandemic. Based on past trends, this implies a one-point dip on Gallup’s one-to-ten happiness scale.</p>
+<p>Please study the graph below carefully, read the explanation and answer the questions below:</p>
+<div class="column-full">
+<p><img src="images/russia-happiness.png" width="800" style="display: block; margin: auto;" /> <em>Above:</em> Happiness score of tweets in Russian, average per day. <em>Below:</em> Difference in frequency of words in Russian-language posts on Twitter, % Between day Russian troops entered Crimea in 2014 and start of current war in Ukraine, top 50 words</p>
+</div>
 <div id="questions" class="section level3">
 <h3>Questions:</h3>
 <ol style="list-style-type: decimal">
