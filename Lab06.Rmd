@@ -104,7 +104,19 @@ Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, P
 
 
 
+
+
 In this lab, we will explore the printed catalogues of 28 auction sales in Paris, 1764 - 1780. Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues of 3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables.
+
+
+
+
+As usual, you have the following resources available to you:
+
+* Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLSfGNJs9jARHogiaPBG1699VnzeSOtS0K52XAOA3fHNFkB0-iQ/viewform).
+* Would you like to use one of your tokens for an extension or an upgrade from $R \rightarrow M$ ? Please fill in [this form](https://bit.ly/3Lx6Xo4).
+* If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
+
 
 
 ### Exploratory Data Analysis (EDA)
