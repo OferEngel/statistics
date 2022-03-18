@@ -481,22 +481,31 @@ $(document).ready(function () {
 </div>
 <div class="column-full-left">
 <ol start="3" style="list-style-type: decimal">
-<li><p>Show a scatter-plot of the height of a painting depending on the painting’s width. Because of the skewness of the data, you would want to convert the axis using <code>scale_x_log10()</code> and <code>scale_y_log10()</code>. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer <code>+ geom_abine(slope=___, intercept=___)</code>.</p>
+<li><p>Show a scatter-plot of the height of a painting depending on the painting’s width. Because of the skewness of the data, you would want to convert the axis using <code>scale_x_log10()</code> and <code>scale_y_log10()</code>. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer <code>+ geom_abline(slope=___, intercept=___)</code>.</p>
 <ul>
 <li>What does this straight line signify?</li>
 <li>What is the difference between the paintings above and those below the line?</li>
 <li>What else do you notice, or wonder about the graph?</li>
-<li>BONUS: make the shape of each data point depend on whether the the painting’s description mention any type of landscape (See <code>landsALL</code> in the <a href="http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html">codebook</a>).</li>
+<li>BONUS: Make the color of the dots above the line different to those underneath the straight line. Make the shape of each data point depend on whether the the painting’s description mention any type of landscape (See <code>landsALL</code> in the <a href="http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html">codebook</a>).</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(_____, <span class="fu">aes</span>(<span class="at">x =</span> _____, <span class="at">y =</span> _____)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;_____&quot;</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;_____&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;_____&quot;</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;_____&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To add the column &quot;layout&quot; to our dataset, we use </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the `mutate` function. The new column tells us whether </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a painting has a layout of a &quot;portrait&quot; (height &gt; width) or </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;landscape&quot; (width &gt; height).</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>paintings <span class="ot">&lt;-</span> paintings <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">layout=</span><span class="fu">ifelse</span>(_____ <span class="sc">&gt;</span> _____, <span class="st">&quot;portrait&quot;</span>, <span class="st">&quot;landscape&quot;</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(_____, <span class="fu">aes</span>(<span class="at">x =</span> _____, <span class="at">y =</span> _____, <span class="at">color =</span> _____)) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;_____&quot;</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;_____&quot;</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;_____&quot;</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;_____&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
 <div id="modelling" class="section level3">
 <h3>Modelling</h3>
@@ -506,10 +515,34 @@ $(document).ready(function () {
 <li>The <code>landscape_paintings</code>, includes only those paintings in which the width is greater than the height. You can use the <code>filter</code> function to create this dataset.
 <ul>
 <li><p>The <code>portrait_paintings</code>, includes only those paintings in which the <code>width</code> is smaller than the <code>height</code>. You can use the <code>filter</code> function to create this dataset.</p></li>
-<li><p>Now create one linear model for each of those datasets, predicting the painting’s <code>height</code> from its <code>width</code>. Now and compare between the two intercepts and the two slopes. Interpret the results and explain what you found.</p></li>
-<li><p>Bonus: Instead of predicting the height from the <code>width</code>, try to predict the <code>log(height)</code> from the <code>log(width)</code>. Compare to your results in the previous question. What did you find?</p></li>
+<li><p>Now create one linear model for each of those datasets, predicting the painting’s <code>height</code> from its <code>width</code>. Interpret the two models and Now and compare between them. How do the intercepts compare to one another? How do the two slopes compare to one another?</p></li>
+<li><p>Bonus: Instead a linear regression model to predict the painting’s <code>height</code> from its <code>width</code>, create linear regressions predicting the <code>log(height)</code> from the <code>log(width)</code>. Compare to your results in the previous question. What did you find?</p></li>
 </ul></li>
 </ul></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the original dataset please create two new datasets. One including</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># only the paintings with a portrail layout, the other including only </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># paintings with a landscape layout.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>landscape_paintings <span class="ot">&lt;-</span> paintings <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(layout <span class="sc">==</span> _____)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>portrait_paintings <span class="ot">&lt;-</span> _____ <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(_____ <span class="sc">==</span> _____)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This model will predict the painting&#39;s height </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>landscape.mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(_____ <span class="sc">~</span> _____, <span class="at">data =</span> _____)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>portrait.mdl  <span class="ot">&lt;-</span> <span class="fu">lm</span>(_____ <span class="sc">~</span> _____, <span class="at">data =</span> _____)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display the estimated models (estimations = slope, intercept)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare and interpret them</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="at">landscape =</span> landscape.mdl, </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">portrait  =</span> _____), </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">stars=</span>_____, </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">&quot;Lik|F|B&quot;</span>)</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Again, use the original <code>paintings</code> dataset to create two separate datasets. This time, choose two different painting categories. For example, you may want to compare the <code>Dutch</code> paintings to the <code>Italian</code> ones, or you want to compare the paintings made of wood to those made of cloth.</p>
 <ul>
 <li>Explain how you decided to separate the two types of paintings, what criteria did you choose and why.</li>

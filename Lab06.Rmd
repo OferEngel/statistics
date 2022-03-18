@@ -220,6 +220,40 @@ ggplot(aes(x = Width_in, y = Height_in, color=type, shape=factor(shp))) +
   ) + scale_x_log10(breaks=bks) + scale_y_log10(breaks=bks) + theme(legend.position = "none")
 
 
+paintings <- paintings %>% 
+  mutate(layout=ifelse(Width_in > Height_in, "portrait", "landscape"))
+
+
+landscape_paintings <- paintings %>% 
+  filter(layout == "landscape")
+
+portrait_paintings <- paintings %>% 
+  filter(layout == "portrait")
+
+# This model will predict the painting's height 
+landscape.mdl <- lm(Height_in ~ Width_in, data = landscape_paintings)
+portrait.mdl  <- lm(Height_in ~ Width_in, data = portrait_paintings)
+
+# Now display the estimated models (estimations = slope, intercept)
+# Compare and interpret them
+
+# modelsummary(list(landscape = landscape.mdl, 
+#                   portrait  = portrait.mdl), 
+#              stars=TRUE, 
+#              gof_omit = "Lik|F")
+
+landscape.mdl <- lm(log(Height_in) ~ log(Width_in), data = landscape_paintings)
+portrait.mdl  <- lm(log(Height_in) ~ log(Width_in), data = portrait_paintings)
+
+# Now display the estimated models (estimations = slope, intercept)
+# Compare and interpret them
+
+# modelsummary(list(landscape = landscape.mdl, 
+#                   portrait  = portrait.mdl), 
+#              stars=TRUE, 
+#              gof_omit = "Lik|F")
+
+
 ```
 </div>
 
@@ -227,16 +261,25 @@ ggplot(aes(x = Width_in, y = Height_in, color=type, shape=factor(shp))) +
 <div class="column-full-left">
 
 
-3. Show a scatter-plot of the height of a painting depending on the painting's width. Because of the skewness of the data, you would want to convert the axis using `scale_x_log10()` and  `scale_y_log10()`. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer ` + geom_abine(slope=___, intercept=___)`. 
+3. Show a scatter-plot of the height of a painting depending on the painting's width. Because of the skewness of the data, you would want to convert the axis using `scale_x_log10()` and  `scale_y_log10()`. You will see that the data-points arranged into two separate clusters. How do you explain this clustering? Add a straight diagonal line, starting at the origin and extending in 45 degrees. To do this, you will need to add the layer ` + geom_abline(slope=___, intercept=___)`. 
 
     * What does this straight line signify? 
     * What is the difference between the paintings above and those below the line?
     * What else do you notice, or wonder about the graph?
-    * BONUS: make the shape of each data point depend on whether the the painting's description mention any type of landscape (See `landsALL` in the [codebook](http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html)).
+    * BONUS: Make the color of the dots above the line different to those underneath the straight line. Make the shape of each data point depend on whether the the painting's description mention any type of landscape (See `landsALL` in the [codebook](http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html)).
 
-```{r scatter-show, echo=TRUE, eval=FALSE}
+```{r layout-show, echo=TRUE, eval=FALSE}
 
-ggplot(_____, aes(x = _____, y = _____)) +
+# To add the column "layout" to our dataset, we use 
+# the `mutate` function. The new column tells us whether 
+# a painting has a layout of a "portrait" (height > width) or 
+# "landscape" (width > height).
+
+
+paintings <- paintings %>% 
+  mutate(layout=ifelse(_____ > _____, "portrait", "landscape"))
+
+ggplot(_____, aes(x = _____, y = _____, color = _____)) +
   geom_point() + 
   labs(
     title = "_____",
@@ -265,8 +308,40 @@ ggplot(_____, aes(x = _____, y = _____)) +
     * The `landscape_paintings`, includes only those paintings in which the width is greater than the height. You can use the `filter` function to create this dataset.   
         * The `portrait_paintings`, includes only those paintings in which the `width` is smaller than the `height`. You can use the `filter` function to create this dataset.
         
-        * Now create one linear model for each of those datasets, predicting the painting's `height` from its `width`. Now and compare between the two intercepts and the two slopes. Interpret the results and explain what you found. 
-        * Bonus: Instead of predicting the height from the `width`, try to predict the `log(height)` from the `log(width)`. Compare to your results in the previous question. What did you find? 
+        * Now create one linear model for each of those datasets, predicting the painting's `height` from its `width`. Interpret the two models and Now and compare between them. How do the intercepts compare to one another? How do the two slopes compare to one another?
+          
+        * Bonus: Instead a linear regression model to predict the painting's `height` from its `width`, create linear regressions predicting the `log(height)` from the `log(width)`. Compare to your results in the previous question. What did you find? 
+
+
+
+```{r scatter-show, echo=TRUE, eval=FALSE}
+
+# From the original dataset please create two new datasets. One including
+# only the paintings with a portrail layout, the other including only 
+# paintings with a landscape layout.
+
+
+landscape_paintings <- paintings %>% 
+  filter(layout == _____)
+
+portrait_paintings <- _____ %>% 
+  filter(_____ == _____)
+
+# This model will predict the painting's height 
+landscape.mdl <- lm(_____ ~ _____, data = _____)
+portrait.mdl  <- lm(_____ ~ _____, data = _____)
+
+# Now display the estimated models (estimations = slope, intercept)
+# Compare and interpret them
+
+modelsummary(list(landscape = landscape.mdl, 
+                  portrait  = _____), 
+             stars=_____, 
+             gof_omit = "Lik|F|B")
+
+
+
+```
 
 
 5. Again, use the original `paintings` dataset to create two separate datasets. This time, choose two different painting categories. For example, you may want to compare the `Dutch` paintings to the `Italian` ones, or you want to compare the paintings made of wood to those made of cloth.
