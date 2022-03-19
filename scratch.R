@@ -57,3 +57,20 @@ nobel %>%
   theme(legend.position = "bottom")
   
 
+# 37 out of 128
+
+
+x <- numeric()
+for(i in 1:10000)
+  x <- c(x,sum(sample(c(rep(1,37), rep(0, 128-37)), 128, replace = TRUE)))
+
+ggplot() + 
+  geom_histogram(aes(x=x, y=..density..), binwidth = 1) +
+  geom_vline(xintercept = c(27, mean(x), 47)) + 
+  scale_x_continuous()
+
+sort(x)[.025*10000]
+sort(x)[.975*10000]
+
+
+

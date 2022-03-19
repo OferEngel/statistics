@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab + Numeric Literacy 03</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics I</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Overview
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-flask"></span>
+     
+    Lab + Numeric Litrcy
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Lab01.html">Lab + NL 1</a>
+    </li>
+    <li>
+      <a href="Lab02.html">Lab + NL 2</a>
+    </li>
+    <li>
+      <a href="Lab03.html">Lab + NL 3</a>
+    </li>
+    <li>
+      <a href="Lab04.html">Lab + NL 4</a>
+    </li>
+    <li>
+      <a href="Lab05.html">Lab + NL 5</a>
+    </li>
+    <li>
+      <a href="Lab06.html">Lab + NL 6</a>
+    </li>
+    <li>
+      <a href="Lab07.html">Lab + NL 7</a>
+    </li>
+    <li class="dropdown-header">To be continued...</li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab + Numeric Literacy 03</h1>
+<h3 class="subtitle">Individual assignment</h3>
+<h4 class="date">Due: February 27 at 23:59</h4>
+
+</div>
+
+
+<style>
+.column-left{
+  float: left;
+  width: 60%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 40%;
+  text-align: right;
+  padding-left: 10px;
+}
+
+.column-full{
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+
+
+
+.column-right-text-left{
+  float: right;
+  width: 40%;
+  text-align: left;
+  font-size: 10px;
+}
+
+
+
+
+.column-right-text-center{
+  float: right;
+  width: 40%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.RUsers {
+  padding: 1em;
+  background: aliceblue;
+  color: black;
+}
+
+
+
+.SPSS {
+  padding: 1em;
+  background: whitesmoke;
+  color: black;
+}
+
+</style>
+<div class="SPSS">
+<p><em>Notice</em></p>
+<p>Below the lab section you will find the numeric analysis assignment. Kindly submit <em>both</em> assignments, either in one final report or separately.</p>
+</div>
+<div class="column-right-text-left">
+<!-- </div> -->
+<div class="figure" style="text-align: right">
+<img src="images/nobel.jpg" alt="Alfred Nobel" width="250" />
+<p class="caption">
+Alfred Nobel
+</p>
+</div>
+</div>
+<!-- * A step by step video with instructions on how to do this lab [is available](https://app.perusall.com/courses/grl-2a-statistics-i/orgs-lab-2a?assignmentId=pC5mbRCxgWRxmmiAk&part=1) on Perusall. -->
+<ul>
+<li>Please submit your lab using <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcpbe4S3SMUCY7SMLU-tAcobF6XbawKpDjpGYDa6PVlYZn1w/viewform">this link</a>.<br />
+</li>
+<li>Would you like to use one of your tokens for an extension or an upgrade from <span class="math inline">\(R \rightarrow M\)</span> ? Please fill in <a href="https://bit.ly/3Lx6Xo4">this form</a>.</li>
+<li>If you have questions, please <a href="https://bit.ly/OferMeet">book a slot</a> during Ofer’s office hours!</li>
+</ul>
+<p><br/> <br/></p>
+<p>In January 2017, Buzzfeed published <a href="https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science">an article</a> on the contribution of immigrants to science in America. The article shows that while most living Nobel laureates in the sciences are based in the US, many of them were born in other countries. This is one reason why scientific leaders say that immigration is vital for progress.</p>
+<p>In this lab we will work with the data from this article to recreate some of their visualizations as well as explore new questions.</p>
+<div id="lab-prep" class="section level3">
+<h3>Lab prep</h3>
+<p>You have one task to complete before the lab:</p>
+<ul>
+<li><strong>Task :</strong> Read the Buzzfeed article titled <a href="https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science"><em>These Nobel Prize Winners Show Why Immigration Is So Important For American Science</em></a><em>.</em> We will replicate this analysis in the workshop so it’s crucial that you’re familiar with it ahead of time.</li>
+</ul>
+<p>Before we introduce the data, let’s warm up with some simple exercises.</p>
+<ul>
+<li>Update the YAML, changing the author name to your name, and <strong>knit</strong> the document.</li>
+<li>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling. Make sure you load it by adding it to your setup - code chunk. Then run it in your Console as well:</li>
+</ul>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>The dataset for this assignment can be found as a CSV (comma separated values) file in the <code>data</code> folder of your repository. You can read it in using the following command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nobel <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://bit.ly/3Ikf3i0&quot;</span>)</span></code></pre></div>
+<p>The variable descriptions are as follows:</p>
+<ul>
+<li><code>id</code>: ID number</li>
+<li><code>firstname</code>: First name of laureate</li>
+<li><code>surname</code>: Surname</li>
+<li><code>year</code>: Year prize won</li>
+<li><code>category</code>: Category of prize</li>
+<li><code>affiliation</code>: Affiliation of laureate</li>
+<li><code>city</code>: City of laureate in prize year</li>
+<li><code>country</code>: Country of laureate in prize year</li>
+<li><code>born_date</code>: Birth date of laureate</li>
+<li><code>died_date</code>: Death date of laureate</li>
+<li><code>gender</code>: Gender of laureate</li>
+<li><code>born_city</code>: City where laureate was born</li>
+<li><code>born_country</code>: Country where laureate was born</li>
+<li><code>born_country_code</code>: Code of country where laureate was born</li>
+<li><code>died_city</code>: City where laureate died</li>
+<li><code>died_country</code>: Country where laureate died</li>
+<li><code>died_country_code</code>: Code of country where laureate died</li>
+<li><code>overall_motivation</code>: Overall motivation for recognition</li>
+<li><code>share</code>: Number of other winners award is shared with</li>
+<li><code>motivation</code>: Motivation for recognition</li>
+</ul>
+<p>In a few cases the name of the city/country changed after laureate was given (e.g. in 1975 Bosnia and Herzegovina was called the Socialist Federative Republic of Yugoslavia). In these cases the variables below reflect a different name than their counterparts without the suffix `_original`.</p>
+<ul>
+<li><code>born_country_original</code>: Original country where laureate was born</li>
+<li><code>born_city_original</code>: Original city where laureate was born</li>
+<li><code>died_country_original</code>: Original country where laureate died</li>
+<li><code>died_city_original</code>: Original city where laureate died</li>
+<li><code>city_original</code>: Original city where laureate lived at the time of winning the award</li>
+<li><code>country_original</code>: Original country where laureate lived at the time of winning the award</li>
+</ul>
+</div>
+<div id="get-to-know-your-data" class="section level3">
+<h3>Get to know your data</h3>
+<ol style="list-style-type: decimal">
+<li>How many observations and how many variables are in the dataset? Use <a href="https://rmarkdown.rstudio.com/lesson-4.html">inline code</a> to answer this question. What does each row represent?</li>
+</ol>
+<p>There are some observations in this dataset that we will exclude from our analysis to match the Buzzfeed results.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a new data frame called <code>nobel_living</code> that filters for</li>
+</ol>
+<ul>
+<li>laureates for whom <code>country</code> is available</li>
+<li>laureates who are people as opposed to organizations (organizations are denoted with <code>"org"</code> as their <code>gender</code>)</li>
+<li>laureates who are still alive (their <code>died_date</code> is <code>NA</code>)</li>
+</ul>
+<p>Confirm that once you have filtered for these characteristics you are left with a data frame with 228 observations, once again using inline code.</p>
+<p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
+</div>
+<div id="most-living-nobel-laureates-were-based-in-the-us-when-they-won-their-prizes" class="section level3">
+<h3>Most living Nobel laureates were based in the US when they won their prizes</h3>
+<p>… says the Buzzfeed article. Let’s see if that’s true.</p>
+<p>First, we’ll create a new variable to identify whether the laureate was in the US when they won their prize. We’ll use the <code>mutate()</code> function for this. The following pipeline mutates the <code>nobel_living</code> data frame by adding a new variable called <code>country_us</code>. We use an if statement to create this variable. The first argument in the <code>if_else()</code> function we’re using to write this if statement is the condition we’re testing for. If <code>country</code> is equal to <code>"USA"</code>, we set <code>country_us</code> to <code>"USA"</code>. If not, we set the <code>country_us</code> to <code>"Other"</code>.</p>
+<div class="SPSS">
+<p>Note that we can achieve the same result using the <code>fct_other()</code> function (i.e. with <code>country_us = fct_other(country, "USA")</code>). We decided to use the <code>if_else()</code> here to show you one example of an if statement in R.</p>
+</div>
+<p>Next, we will limit our analysis to only the following categories: Physics, Medicine, Chemistry, and Economics.</p>
+<p>For the next exercise work with the <code>nobel_living_science</code> data frame you created above. This means you’ll need to define this data frame in your R Markdown document, even though the next exercise doesn’t explicitly ask you to do so.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Create a faceted bar plot visualizing the relationship between the category of prize and whether the laureate was in the US when they won the nobel prize. Interpret your visualization, and say a few words about whether the Buzzfeed headline is supported by the data.</p>
+<ul>
+<li>Your visualization should be faceted by category.</li>
+<li>For each facet you should have two bars, one for winners in the US and one for Other.</li>
+<li>Flip the coordinates so the bars are horizontal, not vertical.</li>
+</ul></li>
+</ol>
+<p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
+</div>
+<div id="but-of-those-us-based-nobel-laureates-many-were-born-in-other-countries" class="section level3">
+<h3>But of those US-based Nobel laureates, many were born in other countries</h3>
+<div class="SPSS">
+<p><strong>Hint:</strong> You should be able to borrow from code you used earlier to create the <code>country_us</code> variable.</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create a new variable called <code>born_country_us</code> that has the value <code>"USA"</code> if the laureate is born in the US, and <code>"Other"</code> otherwise. How many of the winners are born in the US?</p></li>
+<li><p>Add a second variable to your visualization from Exercise 3 based on whether the laureate was born in the US or not. Based on your visualization, do the data appear to support Buzzfeed’s claim? Explain your reasoning in 1-2 sentences.</p>
+<ul>
+<li>Your final visualization should contain a facet for each category.</li>
+<li>Within each facet, there should be a bar for whether the laureate won the award in the US or not.</li>
+<li>Each bar should have segments for whether the laureate was born in the US or not.</li>
+</ul></li>
+</ol>
+<p><img src="Lab03_files/figure-html/bar-and-segments-1.png" width="768" /></p>
+</div>
+<div id="heres-where-those-immigrant-nobelists-were-born" class="section level3">
+<h3>Here’s where those immigrant Nobelists were born</h3>
+<div class="SPSS">
+<p>Note that your bar plot won’t exactly match the one from the Buzzfeed article. This is likely because the data has been updated since the article was published.</p>
+</div>
+<p><br/></p>
+<ol start="6" style="list-style-type: decimal">
+<li>In a single pipeline, filter for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the <code>count()</code> function) for their birth country (<code>born_country</code>) and arrange the resulting data frame in descending order of number of observations for each country. Which country is the most common?</li>
+</ol>
+<p>Now go back through your write up to make sure you’ve answered all questions and all of your R chunks are properly labelled. Each chunk must have a different label, or else you will get an error and won’t be able to knit.</p>
+<p>Once you decide that you’re done with this lab, knit the R Markdown document one last time to confirm that they you can reproduce the report.</p>
+<p><br/></p>
+</div>
+<div id="interested-in-how-buzzfeed-made-their-visualizations" class="section level3">
+<h3>Interested in how Buzzfeed made their visualizations?</h3>
+<p>The plots in the Buzzfeed article are called waffle plots. You can find the code used for making these plots in Buzzfeed’s GitHub repo (yes, they have one!) <a href="https://buzzfeednews.github.io/2017-01-immigration-and-science/">here</a>. You’re not expected to recreate them as part of your assignment, but you’re welcomed to do so for fun!</p>
+<p><br/> <br/> <br/> <br/> <br/> <br/></p>
+</div>
+<div id="numeric-literacy-levelling-up-at-gunpoint" class="section level1">
+<h1>Numeric literacy: Levelling up at gunpoint</h1>
+<p>Educated political prisoners settled near their jails and passed on their human capital to their children.</p>
+<p>Please study the graph below carefully, read the explanation and answer the questions below:</p>
+<!-- <div class="column-full"> -->
+<!-- </div> -->
+<div class="figure" style="text-align: center">
+<img src="images/gulags.png" alt="Levelling up at gunpoint" width="800" />
+<p class="caption">
+Levelling up at gunpoint
+</p>
+</div>
+<p>“The bedbugs infested the board bunks like locusts…in autumn the typhus arrived…We crawled to the fence and begged: ‘Give us medicine.’ And the guards fired a volley from the watchtowers.” In “The Gulag Archipelago” <a href="https://en.wikipedia.org/wiki/Aleksandr_Solzhenitsyn">Alexander Solzhenitsyn</a> chronicled the soul-crushing torment of Soviet prisoners. Jailed for criticising the government, Solzhenitsyn was one of the 2.65m people in 1921-59 arrested for “counter-revolutionary activities” and labelled “enemies of the people” (eotp).</p>
+<p>Not all eotp were dissidents: simply belonging to the petite bourgeoisie often led to a trip to the gulag. As a result, eotp tended to be well-educated. In 1939, 1% of census respondents and 2% of gulag inmates had university degrees. Among eotp in 1927-53, the rate was 15%. Incarcerating eotp thus entailed relocating much of the Soviet intelligentsia. And a <a href="https://voxeu.org/article/enemies-people">new paper</a> by Gerhard Toews of the New Economic School in Moscow and Pierre-Louis Vézina of King’s College London shows that regions where eotp were jailed still reap economic benefits from this forced migration.</p>
+<p>Next, the paper measured current levels of economic development within 30km of prison sites. It found that the greater a camp’s share of eotp in 1952, the richer and better-educated people living nearby are today—even after accounting for regional differences and factors that affected where eotp were sent. A ten-percentage-point increase in the share of inmates who were eotp corresponded to gains of 8% in wages; 23% in profits per worker; 23 percentage points in the share of firms at which the average worker went to university; and 21% in the strength of light emitted at night per person, a measure of economic output. After the Soviet Union broke up, the number of registered firms also grew unusually fast near former camps with lots of eotp.</p>
+<div id="questions" class="section level3">
+<h3>Questions:</h3>
+<ol style="list-style-type: decimal">
+<li><p>What do you notice?</p>
+<p>After studying the graph and reading the text, what details do you see in the graph that are unusual or surprising? Looking at it carefully and paying attention to detail, what can you get out of the graph that is not necessarily obvious at first glance</p></li>
+<li><p>What do you wonder?</p>
+<p>Try to formulate a question, related to the graph, something that you would genuinely like to know. Please state your question clearly: as in a statement that ends with a question mark.</p></li>
+<li><p>How does this relate to you and your community?</p>
+<p>Think of something that makes this graph relate to you personally or to your community, however defined. Make sure that you <em>do not</em> talk about something that relates the graph to everyone, no matter who they are, but only to members of <em>your</em> community, something <em>specific</em> that does not related to other communities. This is your opportunity to be creative!</p></li>
+<li><p>What’s going on in this graph? Write a catchy headline that captures the graph’s main idea.</p></li>
+</ol>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

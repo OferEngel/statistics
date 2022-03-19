@@ -122,13 +122,39 @@ You can load them by running the following in your Console:
 
 ```{r}
 library(tidyverse) 
+library(kableExtra)
 # library(tidymodels)
-library(openintro)
+# library(openintro)
 ```
 
 ## Data
 
-The data can be found in the **dsbox** package, and it's called `ncbirths`.
+In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables.
+
+```{r}
+
+tribble(
+  ~name, ~description, 
+  "fage", "Father's age in years", 
+  "mage", "Mother's age in years.", 
+  "mature", "Maturity status of mother.",
+  "weeks", "Length of pregnancy in weeks.",
+  "premie", "Whether the birth was classified as premature (premie) or full-term.",
+  "visits", "Number of hospital visits during pregnancy.",
+  "gained","Weight gained by mother during pregnancy in pounds",
+  "weight", "Weight of the baby at birth in pounds.",
+  "lowbirthweight", "Whether baby was classified as low birthweight `low` or not `not low`.",
+  "gender", "Gender of the baby, `female` or `male.`",
+  "habit", "Status of the mother as a `nonsmoker` or a `smoker`.",
+  "marital", "Whether mother is `married` or `not married` at birth.",
+  "whitemom", "Whether mom is `white` or `not white`"
+) %>%  kbl() %>%
+  kable_paper("hover", full_width = F)
+
+```
+
+
+
 Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
 You can find out more about the dataset by inspecting its documentation, which you can access by running `?ncbirths` in the Console or using the Help menu in RStudio to search for `ncbirths`.
 You can also find this information [here](https://rstudio-education.github.io/dsbox/reference/ncbirths.html).
@@ -136,10 +162,7 @@ You can also find this information [here](https://rstudio-education.github.io/ds
 # Set a seed!
 
 In this lab we'll be generating random samples.
-The last thing you want is those samples to change every time you knit your document.
-So, you should set a seed.
-There's an R chunk in your R Markdown file set aside for this.
-Locate it and add a seed.
+The last thing you want is those samples to change every time you knit your document. So, you should set a seed.
 Make sure all members in a team are using the same seed so that you don't get merge conflicts and your results match up for the narratives.
 
 # Exercises
