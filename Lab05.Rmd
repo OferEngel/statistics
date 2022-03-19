@@ -295,7 +295,7 @@ ggplot(bikes, aes(x = ___, y = ___, color = raw.atemp)) +
 
 ```
 
-8.  Create a visualization displaying the relationship between bike rentals and season. *Interpret* the plot in context of the data. Your plot could look like the following:
+8.  Create a visualization displaying the relationship between bike rentals and season. Show the distribution of bike-rentals and *Interpret* the plot in context of the data. Your plot could look like the following:
 
 ```{r  echo=FALSE, eval=TRUE}
 
@@ -325,7 +325,7 @@ ggplot(bikes, aes(x = season, y = cnt, color = raw.atemp)) +
 
 <br/>
 
-10. Fit another linear model predicting total daily bike rentals from daily feeling temperature.
+10. Fit another linear model predicting total daily bike rentals from daily (raw) feeling temperature.
     
     a. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the $R^2$.
 
