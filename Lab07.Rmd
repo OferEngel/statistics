@@ -123,13 +123,14 @@ You can load them by running the following in your Console:
 ```{r}
 library(tidyverse) 
 library(kableExtra)
+set.seed(123)
 # library(tidymodels)
 # library(openintro)
 ```
 
 ## Data
 
-In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables.
+In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables. This lab assignment is based on Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher." [Comparison of birth weight distributions between Chinese and Caucasian infants](https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false)." American Journal of Epidemiology 141.12 (1995): 1177-1187.
 
 ```{r}
 
@@ -155,29 +156,29 @@ tribble(
 
 
 
-Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
-You can find out more about the dataset by inspecting its documentation, which you can access by running `?ncbirths` in the Console or using the Help menu in RStudio to search for `ncbirths`.
-You can also find this information [here](https://rstudio-education.github.io/dsbox/reference/ncbirths.html).
 
-# Set a seed!
+### Prepare 
 
-In this lab we'll be generating random samples.
-The last thing you want is those samples to change every time you knit your document. So, you should set a seed.
-Make sure all members in a team are using the same seed so that you don't get merge conflicts and your results match up for the narratives.
+In this lab we'll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document you set a seed. The seed makes sure that although the random sampling will repeat itself the same way, every time you run the code.
+
+
+```{r show-setup, eval=FALSE, echo=TRUE}
+
+library(tidyverse) 
+library(kableExtra)
+set.seed(____)
+
+```
+
 
 # Exercises
 
 1.  What are the cases in this data set? How many cases are there in our sample?
 
-The first step in the analysis of a new dataset is getting acquainted with the data.
-Make summaries of the variables in your dataset, determine which variables are categorical and which are numerical.
-For numerical variables, are there outliers?
-If you aren't sure or want to take a closer look at the data, make a graph.
+    *   The first step in the analysis of a new dataset is getting acquainted with the data. Create distribution plots for the important variables, paying attention to both categorical and numerical variables. For numerical variables, are there outliers? If you aren't sure or want to take a closer look at the data, make a graph.
 
-## Baby weights
 
-A 1995 study suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds).[^lab-12-inference-smoking-1]
-In this dataset we only have information on mother's race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. `whitemom = "white"`.
+A 1995 study (Wen, Kramer, and Usher, 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds). In this dataset we only have information on mother's race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. `whitemom = "white"`.
 
 We want to evaluate whether the average weight of Caucasian babies has changed since 1995.
 
@@ -186,15 +187,12 @@ Our null hypothesis should state "there is nothing going on", i.e. no change sin
 Our alternative hypothesis should reflect the research question, i.e. some change since 1995.
 Since the research question doesn't state a direction for the change, we use a two sided alternative hypothesis: $H_A: \mu \ne 7.43~pounds$.
 
-3.  Create a filtered data frame called `ncbirths_white` that contain data only from white mothers.
-    Then, calculate the mean of the weights of their babies.
+2.  Create a filtered data frame called `ncbirths_white` that contain data only from white mothers. Then, calculate the mean of the weights of their babies.
 
-4.  Are the conditions necessary for conducting simulation based inference satisfied?
-    Explain your reasoning.
 
-Let's discuss how this test would work.
-Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds.
-In order to do so, we
+::: { .RUsers }
+
+Let's discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds.In order to do so, we
 
 -   take a bootstrap sample of from the original sample,
 -   calculate this bootstrap sample's mean,
@@ -202,18 +200,19 @@ In order to do so, we
 -   shift this distribution to be centred at the null value by subtracting / adding X to all bootstrap mean (X = difference between mean of bootstrap distribution and null value), and
 -   calculate the p-value as the proportion of bootstrap samples that yielded a sample mean at least as extreme as the observed sample mean.
 
-5.  Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
+::: 
 
-## Baby weight vs. smoking
+
+3.  Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
+
+#### Baby weight vs. smoking
 
 Consider the possible relationship between a mother's smoking habit and the weight of her baby.
 Plotting the data is a useful first step because it helps us quickly visualize trends, identify strong associations, and develop research questions.
 
-6.  Make side-by-side boxplots displaying the relationship between `habit` and `weight`.
-    What does the plot highlight about the relationship between these two variables?
+4.  Make side-by-side boxplots displaying the relationship between `habit` and `weight`. What does the plot highlight about the relationship between these two variables?
 
-7.  Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`.
-    You can call this version `ncbirths_habitgiven`.
+5.  Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`. You can call this version `ncbirths_habitgiven`.
 
 The box plots show how the medians of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the `habit` variable, and then calculate the mean `weight` in these groups using.
 
@@ -223,36 +222,36 @@ ncbirths_habitgiven %>%
   summarise(mean_weight = mean(weight))
 ```
 
-There is an observed difference, but is this difference statistically significant?
-In order to answer this question we will conduct a hypothesis test .
+There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test .
 
-7.  Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.
+6.  Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.
 
-8.  Are the conditions necessary for conducting simulation based inference satisfied?
-    Explain your reasoning.
+7.  Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
 
-9.  Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
+8. Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
 
-10. Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
-
-## Baby weight vs. mother's age
+### Bonus questions: Baby weight vs. mother's age
 
 In this portion of the analysis we focus on two variables.
 The first one is `maturemom`.
 
-11. First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.
+9. First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.
 
-The other variable of interest is `lowbirthweight`.
 
-12. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use $\alpha = 0.05$. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.
 
-[^lab-12-inference-smoking-1]: Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher.
-    "Comparison of birth weight distributions between Chinese and Caucasian infants." American Journal of Epidemiology 141.12 (1995): 1177-1187.
+10. The other variable of interest is `lowbirthweight`. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use $\alpha = 0.05$. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.
+
 
 
 🧶 *Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.*
 
 <br/>
+
+# Reference
+
+Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. "Comparison of birth weight distributions between Chinese and Caucasian infants." American Journal of Epidemiology 141.12 (1995): 1177-1187.
+
+
 <br/>
 <br/>
 <br/>
@@ -264,15 +263,22 @@ The other variable of interest is `lowbirthweight`.
 </div>
 
 
-# Numeric literacy: A house [divided](https://en.wikipedia.org/wiki/Lincoln%27s_House_Divided_Speech)?
+# Numeric literacy: Parks and procreation?
 
-Most data on the Russian home front are unreliable. The government has limited freedom of speech and arrested thousands of protesters. A few polls do show support for the war. But the reliability of such polls is moot. The Kremlin has criminalised statements about the war that it deems false. But they still reveal political cleavages and trends over time. One poll found that being young or female, living in a big city, having a degree and not watching tv predicted anti-war views. Support may also be waning. In surveys of internet users in Moscow run by [Alexei Navalny](https://en.wikipedia.org/wiki/Alexei_Navalny), an opposition leader, the share of people blaming Russia surged during the war’s first week.
+As lockdowns forced couples to “Netflix and chill” every night, it seemed plausible that covid-19 might lead to a baby boom. Instead, it has caused a bust. The 21 countries that have published data for January—the first full month in which babies conceived during the first wave were due—report, on average, 11% less births per 1,000 people than in January 2020, and 12% less than you would expect based on each country’s fertility trend in 2009-19. If this trend continues, the number of births prevented by the pandemic may exceed the death toll from covid-19.
 
-Another rich source of data is social media. A team at the University of Vermont has built a measure of sentiment on these sites, using frequencies of various words and ratings of the joy or sadness they convey. Applied to Russian-language Twitter, it accurately detects happy moments like New Year’s Eve. And its fluctuations over time line up with those of a conventional poll run by Gallup, an American firm.
+Data are not yet available for poor countries, where most births occur. And rich-world fertility rates may rise soon, as pregnancies that began in the mid-2020 lull in covid-19 cases come to term. But it would take only a 7% drop in global fertility for a year—just over half the decline in the data from January—for the pandemic to have resulted in 10m fewer births. Such a reduction would equal our estimate of excess deaths caused by covid-19 (see Briefing).
 
-This measure finds that Mr Putin has sent Twitter users into deep despair. Mentions of “war”, frowned upon by the Kremlin, have risen sharply, as have “scary”, “ashamed” and “horror”. Overall, posters’ mood has worsened eight times more than at the start of the covid-19 pandemic. Based on past trends, this implies a one-point dip on Gallup’s one-to-ten happiness scale. 
+There are lots of ways the pandemic could have cut fertility. Birth rates tend to track economic growth. Lockdowns have made dating difficult. And couples may have delayed having children to avoid hospitals or clinics that treat covid-19 patients.
 
-Sources: The Economist, Computational Story Lab; [dorussianswantwar.com](https://www.dorussianswantwar.com/en); [hedonometer.org](hedonometer.org); Qualitas; Twitter; VTsIOM
+Disentangling these factors’ impact is tricky. Some places, such as Chile and Israel, saw stark declines in fertility; others, like Switzerland and Finland, eked out gains. In general, the worse a country’s covid-19 infection rate was, the more its birth rate fell. The same was true of lockdown stringency and of economic contraction.
+
+However, one measure tracked fertility unusually well: the change in attendance at parks in January-April 2020, as reported by Google. This link is hard to interpret. Rather than park traffic itself raising birth rates, something else must be influencing both park visits and conceptions. Yet once you account for footfall at parks, neither infection rates nor gdp nor other mobility data improve predictions significantly.
+
+
+Sources: The Economist, Federal Reserve Bank of St Louis; Google; humanfertility.org; OECD; Our World in Data; Statista; Trading Economics; World Bank; national statistics; The Economist
+
+This article appeared in the [Graphic detail section](https://www.economist.com/graphic-detail/2021/05/15/park-visits-predict-changes-in-birth-rates-during-the-pandemic).
 
 
 Please study the graph below carefully, read the explanation and answer the questions below: 
@@ -281,9 +287,9 @@ Please study the graph below carefully, read the explanation and answer the ques
 <div class="column-full">
 
 ```{r numeric-lit, echo=FALSE, fig.align="center", fig.cap="", out.width=800}
-knitr::include_graphics("images/russia-happiness.png")
+knitr::include_graphics("images/births.jpg")
 ```
-*Above:* Happiness score of tweets in Russian, average per day. *Below:* Difference in frequency of words in Russian-language posts on Twitter, % Between day Russian troops entered Crimea in 2014 and start of current war in Ukraine, top 50 words
+
 </div>
 
 

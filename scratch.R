@@ -72,5 +72,32 @@ ggplot() +
 sort(x)[.025*10000]
 sort(x)[.975*10000]
 
+paintings <- 
+  read_csv("https://bit.ly/36IfLaO", 
+           na = c("n/a", "", "NA"))
 
+paintings <- paintings %>% 
+  drop_na(Width_in, Height_in) %>% 
+  mutate(layout=ifelse(Height_in > Width_in, 
+                       "portrait", 
+                       "landscape"))
+
+
+
+ggplot(paintings, 
+       aes(x = Width_in, 
+           y = Height_in, 
+           color=layout, 
+           shape=layout)) + 
+  scale_x_log10() + 
+  scale_y_log10() +
+  geom_point() + 
+  labs(
+    title = "Height vs. Width of paintings"  ,
+    subtitle = "Paris auctions, 1764 - 1780" ,
+    x = "Width (Inches)" ,
+    y = "Height (Inches)") + 
+  geom_abline(slope=1, intercept=0, color="purple") + 
+  scale_color_manual(values=c("red", "green"))
+  
 

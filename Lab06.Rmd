@@ -268,13 +268,21 @@ portrait.mdl  <- lm(log(Height_in) ~ log(Width_in), data = portrait_paintings)
     * What else do you notice, or wonder about the graph?
     * BONUS: Make the color of the dots above the line different to those underneath the straight line. Make the shape of each data point depend on whether the the painting's description mention any type of landscape (See `landsALL` in the [codebook](http://www2.stat.duke.edu/~cr173/Sta112_Fa16/data/paris_paintings.html)).
 
+
+
+
+
 ```{r layout-show, echo=TRUE, eval=FALSE}
 
 # To add the column "layout" to our dataset, we use 
 # the `mutate` function. The new column tells us whether 
 # a painting has a layout of a "portrait" (height > width) or 
 # "landscape" (width > height).
-
+# 
+# You can use the drop_na() function in order 
+# to remove observations without values for 
+# the height and the width.
+# 
 
 paintings <- paintings %>% 
   mutate(layout=ifelse(_____ > _____, "portrait", "landscape"))
@@ -308,7 +316,7 @@ ggplot(_____, aes(x = _____, y = _____, color = _____)) +
     * The `landscape_paintings`, includes only those paintings in which the width is greater than the height. You can use the `filter` function to create this dataset.   
         * The `portrait_paintings`, includes only those paintings in which the `width` is smaller than the `height`. You can use the `filter` function to create this dataset.
         
-        * Now create one linear model for each of those datasets, predicting the painting's `height` from its `width`. Interpret the two models and Now and compare between them. How do the intercepts compare to one another? How do the two slopes compare to one another?
+        * Now create one linear model for each of those datasets, predicting the painting's `height` from its `width`. Interpret the two models and Now and compare between them. How do the intercepts compare to one another? How do the two slopes compare to one another? How do you explain this difference?
           
         * Bonus: Instead a linear regression model to predict the painting's `height` from its `width`, create linear regressions predicting the `log(height)` from the `log(width)`. Compare to your results in the previous question. What did you find? 
 

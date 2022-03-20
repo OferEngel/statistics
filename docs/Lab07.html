@@ -45,6 +45,100 @@
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -366,7 +460,7 @@ $(document).ready(function () {
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables.</p>
+<p>In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables. This lab assignment is based on Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher.” <a href="https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false">Comparison of birth weight distributions between Chinese and Caucasian infants</a>.” American Journal of Epidemiology 141.12 (1995): 1177-1187.</p>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -485,30 +579,32 @@ Whether mom is <code>white</code> or <code>not white</code>
 </tr>
 </tbody>
 </table>
-<p>Since the dataset is distributed with the package, we don’t need to load it separately; it becomes available to us when we load the package. You can find out more about the dataset by inspecting its documentation, which you can access by running <code>?ncbirths</code> in the Console or using the Help menu in RStudio to search for <code>ncbirths</code>. You can also find this information <a href="https://rstudio-education.github.io/dsbox/reference/ncbirths.html">here</a>.</p>
+<div id="prepare" class="section level3">
+<h3>Prepare</h3>
+<p>In this lab we’ll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document you set a seed. The seed makes sure that although the random sampling will repeat itself the same way, every time you run the code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(____)</span></code></pre></div>
 </div>
 </div>
-<div id="set-a-seed" class="section level1">
-<h1>Set a seed!</h1>
-<p>In this lab we’ll be generating random samples. The last thing you want is those samples to change every time you knit your document. So, you should set a seed. Make sure all members in a team are using the same seed so that you don’t get merge conflicts and your results match up for the narratives.</p>
 </div>
 <div id="exercises" class="section level1">
 <h1>Exercises</h1>
 <ol style="list-style-type: decimal">
-<li>What are the cases in this data set? How many cases are there in our sample?</li>
+<li><p>What are the cases in this data set? How many cases are there in our sample?</p>
+<ul>
+<li>The first step in the analysis of a new dataset is getting acquainted with the data. Create distribution plots for the important variables, paying attention to both categorical and numerical variables. For numerical variables, are there outliers? If you aren’t sure or want to take a closer look at the data, make a graph.</li>
+</ul></li>
 </ol>
-<p>The first step in the analysis of a new dataset is getting acquainted with the data. Make summaries of the variables in your dataset, determine which variables are categorical and which are numerical. For numerical variables, are there outliers? If you aren’t sure or want to take a closer look at the data, make a graph.</p>
-<div id="baby-weights" class="section level2">
-<h2>Baby weights</h2>
-<p>A 1995 study suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> In this dataset we only have information on mother’s race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. <code>whitemom = "white"</code>.</p>
+<p>A 1995 study (Wen, Kramer, and Usher, 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds). In this dataset we only have information on mother’s race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. <code>whitemom = "white"</code>.</p>
 <p>We want to evaluate whether the average weight of Caucasian babies has changed since 1995.</p>
 <p>Our null hypothesis should state “there is nothing going on”, i.e. no change since 1995: <span class="math inline">\(H_0: \mu = 7.43~pounds\)</span>.</p>
 <p>Our alternative hypothesis should reflect the research question, i.e. some change since 1995. Since the research question doesn’t state a direction for the change, we use a two sided alternative hypothesis: <span class="math inline">\(H_A: \mu \ne 7.43~pounds\)</span>.</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Create a filtered data frame called <code>ncbirths_white</code> that contain data only from white mothers. Then, calculate the mean of the weights of their babies.</p></li>
-<li><p>Are the conditions necessary for conducting simulation based inference satisfied? Explain your reasoning.</p></li>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a filtered data frame called <code>ncbirths_white</code> that contain data only from white mothers. Then, calculate the mean of the weights of their babies.</li>
 </ol>
-<p>Let’s discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds. In order to do so, we</p>
+<div class="RUsers">
+<p>Let’s discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds.In order to do so, we</p>
 <ul>
 <li>take a bootstrap sample of from the original sample,</li>
 <li>calculate this bootstrap sample’s mean,</li>
@@ -516,50 +612,54 @@ Whether mom is <code>white</code> or <code>not white</code>
 <li>shift this distribution to be centred at the null value by subtracting / adding X to all bootstrap mean (X = difference between mean of bootstrap distribution and null value), and</li>
 <li>calculate the p-value as the proportion of bootstrap samples that yielded a sample mean at least as extreme as the observed sample mean.</li>
 </ul>
-<ol start="5" style="list-style-type: decimal">
+</div>
+<ol start="3" style="list-style-type: decimal">
 <li>Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.</li>
 </ol>
-</div>
-<div id="baby-weight-vs.-smoking" class="section level2">
-<h2>Baby weight vs. smoking</h2>
+<div id="baby-weight-vs.-smoking" class="section level4">
+<h4>Baby weight vs. smoking</h4>
 <p>Consider the possible relationship between a mother’s smoking habit and the weight of her baby. Plotting the data is a useful first step because it helps us quickly visualize trends, identify strong associations, and develop research questions.</p>
-<ol start="6" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li><p>Make side-by-side boxplots displaying the relationship between <code>habit</code> and <code>weight</code>. What does the plot highlight about the relationship between these two variables?</p></li>
 <li><p>Before moving forward, save a version of the dataset omitting observations where there are NAs for <code>habit</code>. You can call this version <code>ncbirths_habitgiven</code>.</p></li>
 </ol>
 <p>The box plots show how the medians of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the <code>habit</code> variable, and then calculate the mean <code>weight</code> in these groups using.</p>
 <p>There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test .</p>
-<ol start="7" style="list-style-type: decimal">
+<ol start="6" style="list-style-type: decimal">
 <li><p>Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.</p></li>
-<li><p>Are the conditions necessary for conducting simulation based inference satisfied? Explain your reasoning.</p></li>
 <li><p>Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.</p></li>
 <li><p>Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.</p></li>
 </ol>
 </div>
-<div id="baby-weight-vs.-mothers-age" class="section level2">
-<h2>Baby weight vs. mother’s age</h2>
+<div id="bonus-questions-baby-weight-vs.-mothers-age" class="section level3">
+<h3>Bonus questions: Baby weight vs. mother’s age</h3>
 <p>In this portion of the analysis we focus on two variables. The first one is <code>maturemom</code>.</p>
-<ol start="11" style="list-style-type: decimal">
-<li>First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.</li>
-</ol>
-<p>The other variable of interest is <code>lowbirthweight</code>.</p>
-<ol start="12" style="list-style-type: decimal">
-<li>Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use <span class="math inline">\(\alpha = 0.05\)</span>. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.</li>
+<ol start="9" style="list-style-type: decimal">
+<li><p>First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.</p></li>
+<li><p>The other variable of interest is <code>lowbirthweight</code>. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use <span class="math inline">\(\alpha = 0.05\)</span>. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.</p></li>
 </ol>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
-<p><br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/></p>
+<p><br/></p>
 </div>
 </div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+<p>Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.</p>
+<p><br/> <br/> <br/> <br/> <br/> <br/> <br/></p>
 </div>
-<div id="numeric-literacy-a-house-divided" class="section level1">
-<h1>Numeric literacy: A house <a href="https://en.wikipedia.org/wiki/Lincoln%27s_House_Divided_Speech">divided</a>?</h1>
-<p>Most data on the Russian home front are unreliable. The government has limited freedom of speech and arrested thousands of protesters. A few polls do show support for the war. But the reliability of such polls is moot. The Kremlin has criminalised statements about the war that it deems false. But they still reveal political cleavages and trends over time. One poll found that being young or female, living in a big city, having a degree and not watching tv predicted anti-war views. Support may also be waning. In surveys of internet users in Moscow run by <a href="https://en.wikipedia.org/wiki/Alexei_Navalny">Alexei Navalny</a>, an opposition leader, the share of people blaming Russia surged during the war’s first week.</p>
-<p>Another rich source of data is social media. A team at the University of Vermont has built a measure of sentiment on these sites, using frequencies of various words and ratings of the joy or sadness they convey. Applied to Russian-language Twitter, it accurately detects happy moments like New Year’s Eve. And its fluctuations over time line up with those of a conventional poll run by Gallup, an American firm.</p>
-<p>This measure finds that Mr Putin has sent Twitter users into deep despair. Mentions of “war”, frowned upon by the Kremlin, have risen sharply, as have “scary”, “ashamed” and “horror”. Overall, posters’ mood has worsened eight times more than at the start of the covid-19 pandemic. Based on past trends, this implies a one-point dip on Gallup’s one-to-ten happiness scale.</p>
-<p>Sources: The Economist, Computational Story Lab; <a href="https://www.dorussianswantwar.com/en">dorussianswantwar.com</a>; <a href="hedonometer.org">hedonometer.org</a>; Qualitas; Twitter; VTsIOM</p>
+</div>
+<div id="numeric-literacy-parks-and-procreation" class="section level1">
+<h1>Numeric literacy: Parks and procreation?</h1>
+<p>As lockdowns forced couples to “Netflix and chill” every night, it seemed plausible that covid-19 might lead to a baby boom. Instead, it has caused a bust. The 21 countries that have published data for January—the first full month in which babies conceived during the first wave were due—report, on average, 11% less births per 1,000 people than in January 2020, and 12% less than you would expect based on each country’s fertility trend in 2009-19. If this trend continues, the number of births prevented by the pandemic may exceed the death toll from covid-19.</p>
+<p>Data are not yet available for poor countries, where most births occur. And rich-world fertility rates may rise soon, as pregnancies that began in the mid-2020 lull in covid-19 cases come to term. But it would take only a 7% drop in global fertility for a year—just over half the decline in the data from January—for the pandemic to have resulted in 10m fewer births. Such a reduction would equal our estimate of excess deaths caused by covid-19 (see Briefing).</p>
+<p>There are lots of ways the pandemic could have cut fertility. Birth rates tend to track economic growth. Lockdowns have made dating difficult. And couples may have delayed having children to avoid hospitals or clinics that treat covid-19 patients.</p>
+<p>Disentangling these factors’ impact is tricky. Some places, such as Chile and Israel, saw stark declines in fertility; others, like Switzerland and Finland, eked out gains. In general, the worse a country’s covid-19 infection rate was, the more its birth rate fell. The same was true of lockdown stringency and of economic contraction.</p>
+<p>However, one measure tracked fertility unusually well: the change in attendance at parks in January-April 2020, as reported by Google. This link is hard to interpret. Rather than park traffic itself raising birth rates, something else must be influencing both park visits and conceptions. Yet once you account for footfall at parks, neither infection rates nor gdp nor other mobility data improve predictions significantly.</p>
+<p>Sources: The Economist, Federal Reserve Bank of St Louis; Google; humanfertility.org; OECD; Our World in Data; Statista; Trading Economics; World Bank; national statistics; The Economist</p>
+<p>This article appeared in the <a href="https://www.economist.com/graphic-detail/2021/05/15/park-visits-predict-changes-in-birth-rates-during-the-pandemic">Graphic detail section</a>.</p>
 <p>Please study the graph below carefully, read the explanation and answer the questions below:</p>
 <div class="column-full">
-<p><img src="images/russia-happiness.png" width="800" style="display: block; margin: auto;" /> <em>Above:</em> Happiness score of tweets in Russian, average per day. <em>Below:</em> Difference in frequency of words in Russian-language posts on Twitter, % Between day Russian troops entered Crimea in 2014 and start of current war in Ukraine, top 50 words</p>
+<p><img src="images/births.jpg" width="800" style="display: block; margin: auto;" /></p>
 </div>
 <div id="questions" class="section level3">
 <h3>Questions:</h3>
@@ -573,12 +673,6 @@ Whether mom is <code>white</code> or <code>not white</code>
 <li><p>What’s going on in this graph? Write a catchy headline that captures the graph’s main idea.</p></li>
 </ol>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 
 
