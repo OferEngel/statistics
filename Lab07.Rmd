@@ -73,24 +73,24 @@ knitr::opts_chunk$set(
 	message = FALSE,
 	warning = FALSE
 )
-library(tidyverse)
-library(broom)
+
+library(tidymodels)
 library(modelsummary)
 library(gridExtra)
-# library(lubridate)
+library(kableExtra)
+library(tidyverse)
+# library(knitr)
+# library(openintro)
 # library(scales)
-# library(DT)
-# library(unvotes)
-
-# United Nations
-
+# library(broom)
+set.seed(1234)
 
 
 ```
 
 
 
-<div class="column-right-small">
+<div class="column-right-large">
 
 ```{r auction, echo=FALSE, fig.align="right"}
 knitr::include_graphics("images/smoking.jpg")
@@ -104,33 +104,18 @@ Maternal smoking during pregnancy could cause biological aging, influencing feta
 
 
 
-In 2004, the state of North Carolina released a large data set containing information on births recorded in this state.
-This data set is useful to researchers studying the relation between habits and practices of expectant mothers and the birth of their children. We will work with a random sample of observations from this data set.
+As usual, you have the following resources available to you:
 
-# Learning goals
-
--   Constructing confidence intervals
--   Conducting hypothesis tests
--   Interpreting confidence intervals and results of hypothesis tests in context of the data
+* Please submit your lab using [this link](https://docs.google.com/forms/d/e/1FAIpQLScG6JZ04OA1PGOc5aA0U0lrzk1gPGem4jixike1FOxpGAzgRA/viewform).
+* Would you like to use one of your tokens for an extension or an upgrade from R (revise) to an M (meeting specs)? Please fill in [this form](https://bit.ly/3Lx6Xo4).
+* If you have questions, please [book a slot](https://bit.ly/OferMeet) during Ofer's office hours!
 
 
-## Packages
 
-We'll use the **tidyverse** package for much of the data wrangling and visualisation, the **tidymodels** package for inference, and the data lives in the **dsbox** package.
-These packages are already installed for you.
-You can load them by running the following in your Console:
+### Data
 
-```{r}
-library(tidyverse) 
-library(kableExtra)
-set.seed(123)
-# library(tidymodels)
-# library(openintro)
-```
+In 2004, the state of North Carolina released to the public [a large data set]() containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set, with 13 variables. This lab assignment is based on Wen et al (1995), and you can download the dataset using [this link](https://bit.ly/3IxUNbZ).
 
-## Data
-
-In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables. This lab assignment is based on Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher." [Comparison of birth weight distributions between Chinese and Caucasian infants](https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false)." American Journal of Epidemiology 141.12 (1995): 1177-1187.
 
 ```{r}
 
@@ -150,22 +135,21 @@ tribble(
   "marital", "Whether mother is `married` or `not married` at birth.",
   "whitemom", "Whether mom is `white` or `not white`"
 ) %>%  kbl() %>%
-  kable_paper("hover", full_width = F)
+  kable_paper(full_width = F)
 
 ```
 
 
-
-
 ### Prepare 
 
-In this lab we'll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document you set a seed. The seed makes sure that although the random sampling will repeat itself the same way, every time you run the code.
+In this lab we'll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document, you may set a seed. The seed guarantees that although the random sampling will repeat itself the same way, every time you run the code.
 
 
 ```{r show-setup, eval=FALSE, echo=TRUE}
-
-library(tidyverse) 
-library(kableExtra)
+# Confirm setting the appropriate code-chunk options to FALSE 
+library(tidyverse)
+library(tidymodels)
+ncbirths <- read_csv("https://bit.ly/3IxUNbZ")
 set.seed(____)
 
 ```
@@ -173,26 +157,86 @@ set.seed(____)
 
 # Exercises
 
-1.  What are the cases in this data set? How many cases are there in our sample?
+1.  The first step in the analysis of a new dataset is getting acquainted with the data. 
+  
+    * What do the cases (rows) in this data set signify? How many cases are there in our sample? How many variables?
+    * Plot distribution for variables of interest for the rest of the lab. Pay attention to both categorical and numerical variables, and for numerical variables, report whether you see any outliers.  
+    * Plot scatter-plots to show the relationships between variables of interest.
 
-    *   The first step in the analysis of a new dataset is getting acquainted with the data. Create distribution plots for the important variables, paying attention to both categorical and numerical variables. For numerical variables, are there outliers? If you aren't sure or want to take a closer look at the data, make a graph.
-
-
-A 1995 study (Wen, Kramer, and Usher, 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds). In this dataset we only have information on mother's race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. `whitemom = "white"`.
-
-We want to evaluate whether the average weight of Caucasian babies has changed since 1995.
-
-Our null hypothesis should state "there is nothing going on", i.e. no change since 1995: $H_0: \mu = 7.43~pounds$.
-
-Our alternative hypothesis should reflect the research question, i.e. some change since 1995.
-Since the research question doesn't state a direction for the change, we use a two sided alternative hypothesis: $H_A: \mu \ne 7.43~pounds$.
-
-2.  Create a filtered data frame called `ncbirths_white` that contain data only from white mothers. Then, calculate the mean of the weights of their babies.
-
+<br/>
 
 ::: { .RUsers }
 
-Let's discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds.In order to do so, we
+A 1995 study (Wen et al 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams. To find whether the average weight of Caucasian babies has changed since then, we will make use of a dataset described above. In this dataset we only have information on mother's race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. `whitemom = "white"`. 
+
+Our null hypothesis will state that "there is nothing going on", i.e. no change since 1995: $H_0: \mu = 3,369~grams$.
+
+Our alternative hypothesis should reflect the research question, i.e. some change since 1995. Since the research question doesn't state a direction for the change, we use a two sided alternative hypothesis: $H_A: \mu \ne 3,369~grams$.
+
+:::
+
+<br/>
+
+2.  Create a filtered data frame called `ncbirths_white` that contain data only from white mothers, for whom the `habit` variable is not `na`. Then, calculate and *report* the mean of the baby weight in this data set.
+
+3.  Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
+
+```{r read-stuff-noshow, echo=FALSE, eval=FALSE, include=FALSE}
+
+# create filtered data 
+ncbirths_white <- read_csv("https://bit.ly/3IxUNbZ") %>% 
+  filter(whitemom=="white") 
+
+
+mean.baby.weight <- mean(ncbirths_white$weight)
+
+boot <- ncbirths_white %>%
+  # specify the variable of interest
+  specify(response = weight) %>% 
+  # generate 10000 bootstrap samples
+  generate(reps = 10000, type = "bootstrap") %>% 
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean")
+
+# 95th confidence interval: ranges from 2.5% to 97.5%
+quantile(boot$stat, probs=c(0.025,0.975))
+
+# calculate the p-value
+mean(boot$stat >= 3369)
+
+```
+
+
+```{r read-stuff, echo=TRUE, eval=FALSE}
+
+# create filtered data `ncbirths_white`
+ncbirths_white <- read_csv("https://bit.ly/3IxUNbZ") %>% 
+  filter(whitemom == ____) 
+
+
+mean.baby.weight <- mean(____$____)
+
+boot <- ____ %>%
+  # specify the variable of interest
+  specify(response = ____) %>% 
+  # generate 10000 bootstrap samples
+  generate(reps = ____, type = "bootstrap") %>% 
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean")
+
+# 95th confidence interval: ranges from 2.5% to 97.5%
+quantile(____$____, probs=c(0.025,0.975))
+
+# calculate the p-value
+mean(____$____ >= ____)
+
+```
+
+<br/>
+
+::: { .RUsers }
+
+Let's discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 3369 grams. In order to do so, we need to carry out the following steps:
 
 -   take a bootstrap sample of from the original sample,
 -   calculate this bootstrap sample's mean,
@@ -202,44 +246,130 @@ Let's discuss how this test would work. Our goal is to simulate a null distribut
 
 ::: 
 
+<br/>
 
-3.  Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
-
-#### Baby weight vs. smoking
+### Baby weight vs. smoking
 
 Consider the possible relationship between a mother's smoking habit and the weight of her baby.
 Plotting the data is a useful first step because it helps us quickly visualize trends, identify strong associations, and develop research questions.
 
-4.  Make side-by-side boxplots displaying the relationship between `habit` and `weight`. What does the plot highlight about the relationship between these two variables?
+4.  Use the `ggplot` function to make a side-by-side boxplots displaying the relationship between `habit` and `weight`. What do you learn from the plot?
 
-5.  Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`. You can call this version `ncbirths_habitgiven`.
+<br/>
 
-The box plots show how the medians of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the `habit` variable, and then calculate the mean `weight` in these groups using.
+::: { .RUsers }
 
-```{r habit-means, eval=FALSE}
+
+Before moving forward, use the `drop_na()` to create a version of the dataset without observations where there are NAs for the variable `habit`. You can call this version `ncbirths_habitgiven`.
+
+The box plots show how the medians and IQR of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the `habit` variable, and then calculate the mean `weight` in these groups using.
+
+```{r habit-means, eval=FALSE, echo=TRUE}
+
+# create a data-frame where we drop all observations in which
+# the variable `habit` has a missing value...
+ncbirths_habitgiven <- 
+  read_csv("https://bit.ly/3IxUNbZ") %>%
+  drop_na(____)
+
 ncbirths_habitgiven %>%
   group_by(habit) %>%
   summarise(mean_weight = mean(weight))
 ```
 
-There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test .
+:::
 
-6.  Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.
+<br/>
 
-7.  Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
+There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test.
 
-8. Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
+5.  Write the null hypothesis $H_0$ and the alternative hypothesis $H_a$ for testing if the average weights of babies born to smoking and non-smoking mothers are different.
+
+6.  Create a bootstraps the appropriate hypothesis test. Then do the following: 
+
+    - Show the distribution of the difference between the average weights of babies born to smoking and non-smoking mothers. 
+    -   Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
+    -   Calculate the p-value for a difference in mean weight which is equal to zero
+    -   Interpret the results in context of the data and the hypothesis test.
+
+
+```{r difference-noshow, eval=FALSE, echo=FALSE}
+
+boot <- ncbirths_habitgiven %>%
+  # specify the variable of interest: 
+  # we want to know how the weight
+  # depends on the habit
+  specify(weight ~ habit)  %>% 
+  # now generate 10000 bootstraps
+  generate(reps = 10000, type = "bootstrap") %>% 
+  # for each bootstrap we calculate the difference in mean weight
+  # subtracting the birthweight for babies of smoking mothers
+  # from smoking mothers.
+  calculate("diff in means", order = c("nonsmoker", "smoker"))
+  
+# Show the distribution of the difference in mean weights
+ggplot(boot) + 
+  geom_histogram(aes(stat), binwidth=5)
+
+# 95% confidence interval
+quantile(boot$stat, probs=c(.025, .975))
+
+# p-value: what is the 
+mean(boot$stat<0)
+
+```
+
+
+
+```{r difference-show, eval=FALSE, echo=TRUE}
+
+boot <- ____ %>%
+  # specify the variable of interest: 
+  # we want to know how the weight
+  # depends on the habit
+  specify(weight ~ ____)  %>% 
+  # now generate 10000 bootstraps
+  generate(reps = ____, type = "bootstrap") %>% 
+  # for each bootstrap we calculate the difference in mean weight
+  # subtracting the birthweight for babies of smoking mothers
+  # from non-smoking mothers.
+  calculate("diff in means", order = c("nonsmoker", "____"))
+  
+# Show the distribution of the difference in mean weights
+ggplot(____) + 
+  geom_histogram(aes(____), binwidth=____)
+
+# 95% confidence interval
+quantile(____$____, probs=c(.025, ____))
+
+# p-value: what is the 
+mean(____$____ < 0)
+
+```
+
+
+<br/>
+
+::: { .RUsers }
+
+*Interpretation:* 
+
+If the p-value is *less than 5%*, your interpretation would be as follows: "We have strong evidence for a significant difference in means between smoking and non-smoking mums at the 5% level"
+
+If the p-value is *greater than 5%*, your interpretation would be as follows: "We *do not* have strong evidence for a significant difference in means between smoking and non-smoking mums at the 5% level"
+
+
+:::
+
+
 
 ### Bonus questions: Baby weight vs. mother's age
 
-In this portion of the analysis we focus on two variables.
-The first one is `maturemom`.
+In this portion of the analysis we focus on two variables. The first one is `maturemom`.
 
-9. First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.
+7. First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.
 
-
-
-10. The other variable of interest is `lowbirthweight`. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use $\alpha = 0.05$. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.
+8. The other variable of interest is `lowbirthweight`. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use $\alpha = 0.05$. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.
 
 
 
@@ -247,9 +377,9 @@ The first one is `maturemom`.
 
 <br/>
 
-# Reference
+### Reference
 
-Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. "Comparison of birth weight distributions between Chinese and Caucasian infants." American Journal of Epidemiology 141.12 (1995): 1177-1187.
+Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. "Comparison of birth weight distributions between Chinese and Caucasian infants." American Journal of Epidemiology 141.12 (1995): 1177-1187, see [original article](https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false).
 
 
 <br/>

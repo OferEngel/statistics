@@ -441,27 +441,21 @@ $(document).ready(function () {
 }
 
 </style>
-<div class="column-right-small">
+<div class="column-right-large">
 <p><img src="images/smoking.jpg" width="1000" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>Maternal smoking during pregnancy could cause biological aging, influencing fetal growth</p>
 </div>
 <div class="column-full-left">
-<p>In 2004, the state of North Carolina released a large data set containing information on births recorded in this state. This data set is useful to researchers studying the relation between habits and practices of expectant mothers and the birth of their children. We will work with a random sample of observations from this data set.</p>
-<div id="learning-goals" class="section level1">
-<h1>Learning goals</h1>
+<p>As usual, you have the following resources available to you:</p>
 <ul>
-<li>Constructing confidence intervals</li>
-<li>Conducting hypothesis tests</li>
-<li>Interpreting confidence intervals and results of hypothesis tests in context of the data</li>
+<li>Please submit your lab using <a href="https://docs.google.com/forms/d/e/1FAIpQLScG6JZ04OA1PGOc5aA0U0lrzk1gPGem4jixike1FOxpGAzgRA/viewform">this link</a>.</li>
+<li>Would you like to use one of your tokens for an extension or an upgrade from R (revise) to an M (meeting specs)? Please fill in <a href="https://bit.ly/3Lx6Xo4">this form</a>.</li>
+<li>If you have questions, please <a href="https://bit.ly/OferMeet">book a slot</a> during Ofer’s office hours!</li>
 </ul>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
-<p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualisation, the <strong>tidymodels</strong> package for inference, and the data lives in the <strong>dsbox</strong> package. These packages are already installed for you. You can load them by running the following in your Console:</p>
-</div>
-<div id="data" class="section level2">
-<h2>Data</h2>
-<p>In 2004, the state of North Carolina released to the public a large data set containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set. A data frame with 1000 observations on the following 13 variables. This lab assignment is based on Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher.” <a href="https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false">Comparison of birth weight distributions between Chinese and Caucasian infants</a>.” American Journal of Epidemiology 141.12 (1995): 1177-1187.</p>
-<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>In 2004, the state of North Carolina released to the public <a href="">a large data set</a> containing information on births recorded in this state. This data set has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children. This is a random sample of 1,000 cases from this data set, with 13 variables. This lab assignment is based on Wen et al (1995), and you can download the dataset using <a href="https://bit.ly/3IxUNbZ">this link</a>.</p>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -579,32 +573,61 @@ Whether mom is <code>white</code> or <code>not white</code>
 </tr>
 </tbody>
 </table>
+</div>
 <div id="prepare" class="section level3">
 <h3>Prepare</h3>
-<p>In this lab we’ll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document you set a seed. The seed makes sure that although the random sampling will repeat itself the same way, every time you run the code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(____)</span></code></pre></div>
-</div>
-</div>
+<p>In this lab we’ll be generating random samples. This means that every time you sample, you will get different results. To avoid having the samples change every time you knit your document, you may set a seed. The seed guarantees that although the random sampling will repeat itself the same way, every time you run the code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm setting the appropriate code-chunk options to FALSE </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ncbirths <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://bit.ly/3IxUNbZ&quot;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(____)</span></code></pre></div>
 </div>
 <div id="exercises" class="section level1">
 <h1>Exercises</h1>
 <ol style="list-style-type: decimal">
-<li><p>What are the cases in this data set? How many cases are there in our sample?</p>
+<li><p>The first step in the analysis of a new dataset is getting acquainted with the data.</p>
 <ul>
-<li>The first step in the analysis of a new dataset is getting acquainted with the data. Create distribution plots for the important variables, paying attention to both categorical and numerical variables. For numerical variables, are there outliers? If you aren’t sure or want to take a closer look at the data, make a graph.</li>
+<li>What do the cases (rows) in this data set signify? How many cases are there in our sample? How many variables?</li>
+<li>Plot distribution for variables of interest for the rest of the lab. Pay attention to both categorical and numerical variables, and for numerical variables, report whether you see any outliers.<br />
+</li>
+<li>Plot scatter-plots to show the relationships between variables of interest.</li>
 </ul></li>
 </ol>
-<p>A 1995 study (Wen, Kramer, and Usher, 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams (7.43 pounds). In this dataset we only have information on mother’s race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. <code>whitemom = "white"</code>.</p>
-<p>We want to evaluate whether the average weight of Caucasian babies has changed since 1995.</p>
-<p>Our null hypothesis should state “there is nothing going on”, i.e. no change since 1995: <span class="math inline">\(H_0: \mu = 7.43~pounds\)</span>.</p>
-<p>Our alternative hypothesis should reflect the research question, i.e. some change since 1995. Since the research question doesn’t state a direction for the change, we use a two sided alternative hypothesis: <span class="math inline">\(H_A: \mu \ne 7.43~pounds\)</span>.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Create a filtered data frame called <code>ncbirths_white</code> that contain data only from white mothers. Then, calculate the mean of the weights of their babies.</li>
-</ol>
+<p><br/></p>
 <div class="RUsers">
-<p>Let’s discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 7.43 pounds.In order to do so, we</p>
+<p>A 1995 study (Wen et al 1995) suggests that average weight of Caucasian babies born in the US is 3,369 grams. To find whether the average weight of Caucasian babies has changed since then, we will make use of a dataset described above. In this dataset we only have information on mother’s race, so we will make the simplifying assumption that babies of Caucasian mothers are also Caucasian, i.e. <code>whitemom = "white"</code>.</p>
+<p>Our null hypothesis will state that “there is nothing going on”, i.e. no change since 1995: <span class="math inline">\(H_0: \mu = 3,369~grams\)</span>.</p>
+<p>Our alternative hypothesis should reflect the research question, i.e. some change since 1995. Since the research question doesn’t state a direction for the change, we use a two sided alternative hypothesis: <span class="math inline">\(H_A: \mu \ne 3,369~grams\)</span>.</p>
+</div>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Create a filtered data frame called <code>ncbirths_white</code> that contain data only from white mothers, for whom the <code>habit</code> variable is not <code>na</code>. Then, calculate and <em>report</em> the mean of the baby weight in this data set.</p></li>
+<li><p>Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create filtered data `ncbirths_white`</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ncbirths_white <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://bit.ly/3IxUNbZ&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(whitemom <span class="sc">==</span> ____) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>mean.baby.weight <span class="ot">&lt;-</span> <span class="fu">mean</span>(____<span class="sc">$</span>____)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> ____ <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify the variable of interest</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ____) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate 10000 bootstrap samples</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> ____, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the mean of each bootstrap sample</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 95th confidence interval: ranges from 2.5% to 97.5%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(____<span class="sc">$</span>____, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p-value</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(____<span class="sc">$</span>____ <span class="sc">&gt;=</span> ____)</span></code></pre></div>
+<p><br/></p>
+<div class="RUsers">
+<p>Let’s discuss how this test would work. Our goal is to simulate a null distribution of sample means that is centred at the null value of 3369 grams. In order to do so, we need to carry out the following steps:</p>
 <ul>
 <li>take a bootstrap sample of from the original sample,</li>
 <li>calculate this bootstrap sample’s mean,</li>
@@ -613,39 +636,82 @@ Whether mom is <code>white</code> or <code>not white</code>
 <li>calculate the p-value as the proportion of bootstrap samples that yielded a sample mean at least as extreme as the observed sample mean.</li>
 </ul>
 </div>
-<ol start="3" style="list-style-type: decimal">
-<li>Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in context of the data and the hypothesis test.</li>
-</ol>
-<div id="baby-weight-vs.-smoking" class="section level4">
-<h4>Baby weight vs. smoking</h4>
+<p><br/></p>
+<div id="baby-weight-vs.-smoking" class="section level3">
+<h3>Baby weight vs. smoking</h3>
 <p>Consider the possible relationship between a mother’s smoking habit and the weight of her baby. Plotting the data is a useful first step because it helps us quickly visualize trends, identify strong associations, and develop research questions.</p>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Make side-by-side boxplots displaying the relationship between <code>habit</code> and <code>weight</code>. What does the plot highlight about the relationship between these two variables?</p></li>
-<li><p>Before moving forward, save a version of the dataset omitting observations where there are NAs for <code>habit</code>. You can call this version <code>ncbirths_habitgiven</code>.</p></li>
+<li>Use the <code>ggplot</code> function to make a side-by-side boxplots displaying the relationship between <code>habit</code> and <code>weight</code>. What do you learn from the plot?</li>
 </ol>
-<p>The box plots show how the medians of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the <code>habit</code> variable, and then calculate the mean <code>weight</code> in these groups using.</p>
-<p>There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test .</p>
-<ol start="6" style="list-style-type: decimal">
-<li><p>Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.</p></li>
-<li><p>Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.</p></li>
-<li><p>Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.</p></li>
+<p><br/></p>
+<div class="RUsers">
+<p>Before moving forward, use the <code>drop_na()</code> to create a version of the dataset without observations where there are NAs for the variable <code>habit</code>. You can call this version <code>ncbirths_habitgiven</code>.</p>
+<p>The box plots show how the medians and IQR of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the <code>habit</code> variable, and then calculate the mean <code>weight</code> in these groups using.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data-frame where we drop all observations in which</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the variable `habit` has a missing value...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ncbirths_habitgiven <span class="ot">&lt;-</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;https://bit.ly/3IxUNbZ&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(____)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ncbirths_habitgiven <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habit) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight))</span></code></pre></div>
+</div>
+<p><br/></p>
+<p>There is an observed difference, but is this difference statistically significant? In order to answer this question we will conduct a hypothesis test.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Write the null hypothesis <span class="math inline">\(H_0\)</span> and the alternative hypothesis <span class="math inline">\(H_a\)</span> for testing if the average weights of babies born to smoking and non-smoking mothers are different.</p></li>
+<li><p>Create a bootstraps the appropriate hypothesis test. Then do the following:</p>
+<ul>
+<li>Show the distribution of the difference between the average weights of babies born to smoking and non-smoking mothers.</li>
+<li>Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.</li>
+<li>Calculate the p-value for a difference in mean weight which is equal to zero</li>
+<li>Interpret the results in context of the data and the hypothesis test.</li>
+</ul></li>
 </ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> ____ <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify the variable of interest: </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># we want to know how the weight</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># depends on the habit</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(weight <span class="sc">~</span> ____)  <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># now generate 10000 bootstraps</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> ____, <span class="at">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for each bootstrap we calculate the difference in mean weight</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># subtracting the birthweight for babies of smoking mothers</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># from non-smoking mothers.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="st">&quot;diff in means&quot;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;nonsmoker&quot;</span>, <span class="st">&quot;____&quot;</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the distribution of the difference in mean weights</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(____) <span class="sc">+</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(____), <span class="at">binwidth=</span>____)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% confidence interval</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(____<span class="sc">$</span>____, <span class="at">probs=</span><span class="fu">c</span>(.<span class="dv">025</span>, ____))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value: what is the </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(____<span class="sc">$</span>____ <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><br/></p>
+<div class="RUsers">
+<p><em>Interpretation:</em></p>
+<p>If the p-value is <em>less than 5%</em>, your interpretation would be as follows: “We have strong evidence for a significant difference in means between smoking and non-smoking mums at the 5% level”</p>
+<p>If the p-value is <em>greater than 5%</em>, your interpretation would be as follows: “We <em>do not</em> have strong evidence for a significant difference in means between smoking and non-smoking mums at the 5% level”</p>
+</div>
 </div>
 <div id="bonus-questions-baby-weight-vs.-mothers-age" class="section level3">
 <h3>Bonus questions: Baby weight vs. mother’s age</h3>
 <p>In this portion of the analysis we focus on two variables. The first one is <code>maturemom</code>.</p>
-<ol start="9" style="list-style-type: decimal">
+<ol start="7" style="list-style-type: decimal">
 <li><p>First, a non-inference task: Determine the age cutoff for younger and mature mothers. Use a method of your choice, and explain how your method works.</p></li>
 <li><p>The other variable of interest is <code>lowbirthweight</code>. Conduct a hypothesis test evaluating whether the proportion of low birth weight babies is higher for mature mothers. State the hypotheses, verify the conditions, run the test and calculate the p-value, and state your conclusion in context of the research question. Use <span class="math inline">\(\alpha = 0.05\)</span>. If you find a significant difference, construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the proportions of low birth weight babies between mature and younger mothers, and interpret this interval in context of the data.</p></li>
 </ol>
 <p>🧶 <em>Knit frequently, knit often. Look at your report, make sure it looks neat, professional and tidy.</em></p>
 <p><br/></p>
 </div>
-</div>
-<div id="reference" class="section level1">
-<h1>Reference</h1>
-<p>Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.</p>
+<div id="reference" class="section level3">
+<h3>Reference</h3>
+<p>Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187, see <a href="https://academic.oup.com/aje/article-abstract/141/12/1177/148415?login=false">original article</a>.</p>
 <p><br/> <br/> <br/> <br/> <br/> <br/> <br/></p>
+</div>
 </div>
 </div>
 <div id="numeric-literacy-parks-and-procreation" class="section level1">

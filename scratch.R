@@ -101,3 +101,5 @@ ggplot(paintings,
   scale_color_manual(values=c("red", "green"))
   
 
+mtcars
+bootstraps(mtcars, times = 2)
