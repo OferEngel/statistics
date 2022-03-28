@@ -381,7 +381,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">HW 08 - The binomial distribution</h1>
 <h3 class="subtitle">Individual assignment</h3>
-<h4 class="date">Due: March 27 at 23:59</h4>
+<h4 class="date">Due: April 3 at 23:59</h4>
 
 </div>
 
@@ -395,7 +395,7 @@ $(document).ready(function () {
 .column-right-small{
   float: right;
   width: 30%;
-  text-align: right;
+  text-align: left;
   padding-left: 10px;
   font-size:10px;
 }
@@ -441,12 +441,19 @@ $(document).ready(function () {
 }
 
 </style>
+<div class="column-full-left">
+<p>As usual, you have the following resources available to you:</p>
+<ul>
+<li>Please submit your lab using <a href="https://docs.google.com/forms/d/e/1FAIpQLSeIeu39BhJKcz-xQABivTVvafsVYz-bRe5TOVyjv3DBTotn3w/viewform">this link</a>.</li>
+<li>Would you like to use one of your tokens for an extension or an upgrade from R (revise) to an M (meeting specs)? Please fill in <a href="https://bit.ly/3Lx6Xo4">this form</a>.</li>
+<li>If you have questions, please <a href="https://bit.ly/OferMeet">book a slot</a> during Ofer’s office hours!</li>
+</ul>
+<div id="sex-discrimination-case-study" class="section level2">
+<h2>Sex discrimination case study</h2>
 <div class="column-right-large">
 <p><img src="images/genderpaygap.png" width="640" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>Women get paid less than men. Can we use statistics to show that this is due to discrimination and not due to other factors?</p>
 </div>
-<div id="sex-discrimination-case-study" class="section level2 column-full-left">
-<h2>Sex discrimination case study</h2>
 <p>We consider a study investigating sex discrimination in the 1970s, which is set in the context of personnel decisions within a bank. The research question we hope to answer is, “Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?”</p>
 <div class="SPSS">
 <p>The <a href="http://openintrostat.github.io/openintro/reference/sex_discrimination.html"><code>sex_discrimination</code></a> data set can be found in the <a href="http://openintrostat.github.io/openintro"><strong>openintro</strong></a> R package. The data is based on Rosen B and Jerdee T. (1974). “Influence of sex role stereotypes on personnel decisions”. <em>Journal of Applied Psychology</em> 59(1):9-14.</p>
@@ -459,30 +466,112 @@ $(document).ready(function () {
 <p>The participants in this study were 48 bank supervisors who identified as male, attending a management institute at the <a href="https://www.unc.edu/">University of North Carolina</a> in 1972. They were asked to assume the role of the personnel director of a bank and were given a personnel file to judge whether the person should be promoted to a branch manager position. The files given to the participants were identical, except that half of them indicated the candidate identified as male and the other half indicated the candidate identified as female.</p>
 <p>These files were randomly assigned to the subjects. For each supervisor both the sex associated with the assigned file and the promotion decision were recorded. Using the results of the study, we would like to evaluate if individuals who identify as female are unfairly discriminated against in promotion decisions.</p>
 <p>In this study, a smaller proportion of female identifying applications were promoted than males, but it is unclear whether the difference provides <em>convincing evidence</em> that individuals who identify as female are unfairly discriminated against.</p>
-<p>The data are visualized in Figure @ref(fig:sex-rand-obs) as a set of cards. Note that each card denotes a personnel file (an observation from our dataset) and the colors indicate the decision: red for promoted and white for not promoted. Additionally, the observations are broken up into groups of male and female identifying groups.</p>
 <div class="column-right-small">
 <div class="figure">
-<img src="images/sex-rand-01-obs.png" alt="48 cards are laid out; 24 indicating male files, 24 indicated female files.  Of the 24 male files 3 of the cards are colored white, and 21 of the cards are colored red. Of the female files, 10 of the cards are colored white, and 14 of the cards are colored red." width="15%" />
+<img src="images/sex-rand-01-obs.png" alt="48 cards are laid out; 24 indicating male files, 24 indicated female files.  Of the 24 male files 3 of the cards are colored white, and 21 of the cards are colored red. Of the female files, 10 of the cards are colored white, and 14 of the cards are colored red." width="80%" />
 <p class="caption">
 The sex discrimination study can be thought of as 48 red and white cards.
 </p>
 </div>
-<p>Women get paid less than men. Can we use statistics to show that this is due to discrimination and not due to other factors?</p>
 </div>
+<p>The data are visualized as a set of cards. Note that each card denotes a personnel file (an observation from our dataset) and the colors indicate the decision: red for promoted and white for not promoted. Additionally, the observations are broken up into groups of male and female identifying groups.</p>
 <ul>
-<li><span class="math inline">\(H_0:\)</span> <strong>Null hypothesis</strong>. The variables <code>sex</code> and <code>decision</code> are independent. They have no relationship, and the observed difference between the proportion of males and females who were promoted, was due to the natural variability inherent in the population.</li>
-<li><span class="math inline">\(H_A:\)</span> <strong>Alternative hypothesis</strong>. The variables <code>sex</code> and <code>decision</code> are <em>not</em> independent. The difference in promotion rates was not due to natural variability, and equally qualified female personnel are less likely to be promoted than male personnel.</li>
+<li><span class="math inline">\(H_0:\)</span> <strong>Null hypothesis</strong>. The variables <code>sex</code> and <code>decision</code> are independent. There is no real association between the two, and the observed difference between the proportion of males and females promoted, is just a coincidence. If we ran the experiment again with another 48 male bank supervisors, the results could be completely different.</li>
+<li><span class="math inline">\(H_A:\)</span> <strong>Alternative hypothesis</strong>. The variables <code>sex</code> and <code>decision</code> are <em>not</em> independent. The difference in promotion rates was not due to pure coincidence, and equally qualified female personnel are less likely to be promoted than male personnel.</li>
 </ul>
 <div class="SPSS">
 <p><strong>Hypothesis testing.</strong></p>
 <p>These hypotheses are part of what is called a <strong>hypothesis test</strong>. A hypothesis test is a statistical technique used to evaluate competing claims using data. Often times, the null hypothesis takes a stance of <em>no difference</em> or <em>no effect</em>. This hypothesis assumes that any differences seen are due to the variability inherent in the population and could have occurred by random chance.</p>
 <p>If the null hypothesis and the data notably disagree, then we will reject the null hypothesis in favor of the alternative hypothesis.</p>
-<p>There are many nuances to hypothesis testing, so do not worry if you aren’t a master of hypothesis testing at the end of this section. We’ll discuss these ideas and details many times in this chapter as well as in the chapters that follow.</p>
 </div>
 <p>We will choose between the two competing claims by assessing if the data conflict so much with <span class="math inline">\(H_0\)</span> that the null hypothesis cannot be deemed reasonable. If data and the null claim seem to be at odds with one another, and the data seem to support <span class="math inline">\(H_A,\)</span> then we will reject the notion of independence and conclude that the data provide evidence of discrimination.</p>
 <ol style="list-style-type: decimal">
-<li>Is this an <a href="https://www.youtube.com/watch?v=Z_OJzgkKe2A">observational study or an experiment</a>? How does the type of study impact what can be inferred from the results? Please justify your answer.</li>
+<li><p>Is this an <a href="https://www.youtube.com/watch?v=Z_OJzgkKe2A">observational study or an experiment</a>? How does the type of study impact what can be inferred from the results? Please justify your answer.</p></li>
+<li><p>Create a contingency table, showing the percent of male and female candidates and promoted and not promoted. What is the difference in the proportion of males promoted and the proportion of females promoted? To find out, you would need to install the package <code>janitor</code> and to load it using the function <code>library(janitor)</code>. Then, run the following commands:</p></li>
 </ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the name of the two variables and put them </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># within the tabyl(____, ____) function. </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you have one row for males and one for females.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>promo <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(____, ____) </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the same thing, but this time show the percentages. </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure that the table shows the percentage </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># of males and females promoted. The percentage of </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># promoted and non-promoted should add up to 100%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># for males and for females. </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>promo <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(____, ____) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>()  </span></code></pre></div>
+</div>
+<div id="variability-of-the-statistic" class="section level3">
+<h3>Variability of the statistic</h3>
+<div class="column-right-large">
+<div class="figure">
+<img src="images/sex-rand-02-shuffle-1.png" alt="The 48 red and white cards which denote the original data are shuffled and reassigned, 24 to each group indicating 24 male files and 24 female files." width="80%" />
+<p class="caption">
+The sex discrimination data is shuffled and reallocated to new groups of male and female files.
+</p>
+</div>
+</div>
+<p>The contingency table shows the proportion of bank supervisors who recommended promotion and those who did not. Now, suppose the bankers’ decisions were independent of the sex of the candidate. Then, if we conducted the experiment again with a different random assignment of sex to the files, differences in promotion rates would be based only on random fluctuation in promotion decisions. We can actually perform this <strong>randomization</strong>, which simulates what would have happened if the bankers’ decisions had been independent of <code>sex</code> but we had distributed the file sexes differently.</p>
+<p>The test procedure we employ in this section is sometimes referred to as a <strong>permutation test</strong>. In the <strong>simulation</strong>, we thoroughly shuffle the 48 personnel files, 35 labelled <code>promoted</code> and 13 labelled <code>not promoted</code>, together and we deal files into two new stacks. Note that by keeping 35 promoted and 13 not promoted, we are assuming that 35 of the bank managers would have promoted the individual whose content is contained in the file <strong>independent</strong> of the sex indicated on their file. We will deal 24 files into the first stack, which will represent the 24 “female” files. The second stack will also have 24 files, and it will represent the 24 “male” files. The figure highlights both the shuffle and the reallocation to the sham sex groups.</p>
+<p>Then, as we did with the original data, we tabulate the results and determine the fraction of personnel files designated as “male” and “female” who were promoted.</p>
+<p>Since the randomization of files in this simulation is independent of the promotion decisions, any difference in promotion rates is due to chance.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Use the code below to generate one permutation of the data. Then create a contingency table of that permutation, and compare your results to the previous contingency table you made above.</li>
+</ol>
+<ul>
+<li>Are the total number of males and females the same as before? What about the total number of promoted and non-promoted?</li>
+<li>How do the proportions of promotions compare?</li>
+<li>How does the difference in the proportion of promotions compare?</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create one permuatation - start by setting a seed.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the decision to promote is independent of </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the sexual identity of the candidate </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>permute1 <span class="ot">&lt;-</span> promo <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(decision <span class="sc">~</span> sex, <span class="at">success =</span> <span class="st">&quot;promoted&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>)  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the permutations generated</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>permute1 <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(___, ___)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># And now with percentages...</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>permute1 <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(____, ____) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn____</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn____</span>()  </span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Finally, run the code below to simulate 1000 permutations of the data, permutations we would expect assuming that the null hypothesis was true.</li>
+</ol>
+<ul>
+<li>Assuming independence, what is the 95% confidence interval of the distribution of differences in proportion?</li>
+<li>Assuming independence, is the p-value of observing a difference in proportions as extreme as the one observed in our data?</li>
+<li>Does our data support our hypothesis <span class="math inline">\(H_0\)</span>? Why or why not?</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 1000 permutations, assuming that</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Start by setting a seed.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(___)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the decision to promote is independent of </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the sexual identity of the candidate </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>permute1000 <span class="ot">&lt;-</span>  promo <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(decision <span class="sc">~</span> sex, <span class="at">success =</span> <span class="st">&quot;promoted&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> ___, <span class="at">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">&quot;diff in props&quot;</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>)) </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the proportions, assuming </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(permute1000) <span class="sc">+</span> <span class="fu">geom_____</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Now find the 95% confidence interval </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(permute1000, <span class="at">probs=</span><span class="fu">c</span>(___,___))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the p-value, i.e. the probability that, given </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># the independence assumption (promotion vs sex) we </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># will observe a difference in proportion as extreme </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># as the one observed in our dataset</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> <span class="fu">mean</span>(___<span class="sc">$</span>___ <span class="sc">&gt;</span> ___)</span></code></pre></div>
+</div>
 </div>
 </div>
 <p><br/> <br/> <br/> <br/></p>
