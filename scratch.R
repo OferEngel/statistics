@@ -103,3 +103,88 @@ ggplot(paintings,
 
 mtcars
 bootstraps(mtcars, times = 2)
+
+
+
+data.frame(random.varaible=1:20)
+
+
+library(tidymodels)
+library(tidyverse)
+data.frame(random.var=1:100) %>%
+  ggplot() + geom_histogram(aes(random.var), binwidth = .5)
+
+
+
+boot <- data.frame(random.var=1:100) %>%
+  # specify the variable of interest
+  specify(response = random.var) %>% 
+  # generate 10000 bootstrap samples
+  generate(reps = 10000, type = "bootstrap") %>% 
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean") 
+
+quantile(boot$stat, probs=c(0.025,0.975))
+quantile(boot$stat, probs=.99)
+
+
+# A student is collecting some data, and she came back 
+# with a new sample whose mean was 57. 
+# What is the p-value? 
+# 
+# p-value: assuming that the students' sample was taken from the 
+# same population, what is the probability that we would get
+# we would get the mean 57 or more extreme? 
+mean(boot$stat>____)
+
+
+
+ggplot() + geom_histogram(aes(x=stat), binwidth = .5) + 
+  geom_vline(xintercept = c(mean(1:100)))
+
+
+# Calculate the mean of each bootstrap
+boot <- data.frame(random.var=____) %>%
+  # specify the variable of interest
+  specify(response = ____) %>% 
+  # generate 10000 bootstrap samples
+  generate(reps = ____, type = "bootstrap") %>% 
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean")
+
+# Show the distribution of those means...
+ggplot()....
+
+
+
+# Imagine we took a different sample
+
+# Create five bootstraps
+boot <- data.frame(random.var=1:100) %>%
+  # specify the variable of interest
+  specify(response = random.var) %>% 
+  # generate 5 bootstrap samples
+  generate(reps = 5, type = "bootstrap")
+
+# create a density plot of the five bootstraps
+ggplot(boot) + 
+  geom_density(aes(x=random.var, 
+                   fill=factor(replicate)), 
+               alpha=.4, color=NA)
+
+
+# Create five bootstraps
+boot <- data.frame(random.var=____) %>%
+  # specify the variable of interest
+  specify(response = ____) %>% 
+  # generate 5 bootstrap samples
+  generate(reps = ____, type = "bootstrap")
+
+# create a density plot of the five bootstraps
+ggplot(boot) + 
+  geom_density(aes(x=____, 
+                   fill=____), 
+               alpha=.4, color=NA)
+
+
+

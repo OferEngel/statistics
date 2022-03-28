@@ -1,0 +1,261 @@
+---
+title: "HW 08 - The binomial distribution"
+subtitle: Individual assignment
+date: 'Due: March 27 at 23:59'
+output: html_document
+---
+
+
+<style>
+.column-left{
+  float: left;
+  width: 60%;
+  text-align: left;
+}
+.column-right-small{
+  float: right;
+  width: 30%;
+  text-align: right;
+  padding-left: 10px;
+  font-size:10px;
+}
+
+.column-right-large{
+  float: right;
+  width: 40%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.column-full{
+  float: none;
+  width: 100%;
+  text-align: centre;
+}
+
+
+.column-full-left{
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+
+.center {
+  height: 200px;
+  border: 0px;
+  text-align: center;
+}
+
+
+.RUsers {
+  padding: 1em;
+  background: aliceblue;
+  color: black;
+}
+
+
+.SPSS {
+  padding: 1em;
+  background: whitesmoke;
+  color: black;
+}
+
+</style>
+
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+
+
+library(tidymodels)
+library(modelsummary)
+library(gridExtra)
+library(kableExtra)
+library(tidyverse)
+# library(knitr)
+# library(openintro)
+# library(scales)
+# library(broom)
+set.seed(1234)
+
+
+
+```
+
+
+
+
+<div class="column-right-large">
+
+```{r auction, echo=FALSE, fig.align="right"}
+knitr::include_graphics("images/genderpaygap.png")
+```
+
+Women get paid less than men. Can we use statistics to show that this is due to discrimination and not due to other factors? 
+</div>
+
+
+<div class="column-full-left">
+
+## Sex discrimination case study 
+
+We consider a study investigating sex discrimination in the 1970s, which is set in the context of personnel decisions within a bank. The research question we hope to answer is, "Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?" 
+
+::: {.SPSS}
+The [`sex_discrimination`](http://openintrostat.github.io/openintro/reference/sex_discrimination.html) data set can be found in the [**openintro**](http://openintrostat.github.io/openintro) R package.  The data is based on Rosen B and Jerdee T. (1974). "Influence of sex role stereotypes on personnel decisions". *Journal of Applied Psychology* 59(1):9-14.
+
+To load the data, please install the package `openintro`, and then assign the dataset to the variable `promo` like so:
+
+```{r eval=TRUE, echo=TRUE}
+promo <- openintro::sex_discrimination
+```
+
+:::
+
+This study considered sex roles, and only allowed for options of "male" and "female". Note that the identities being considered are not gender identities and that the study allowed only for a binary classification of sex.
+
+
+```{r eval=FALSE, include=FALSE, echo=FALSE}
+
+
+
+
+boot <- openintro::sex_discrimination %>% 
+  specify(decision~sex, 
+          success="promoted", 
+          order = c("male", "female")) %>% 
+  # generate 10000 bootstrap samples
+  generate(reps = 10000, type = "bootstrap") %>% 
+  # calculate the proportion of each bootstrap sample 
+  calculate(stat="diff in props") 
+
+ggplot(promo) + 
+  geom_histogram(aes(x=stat, y=..density..),binwidth=0.03) 
+
+mean(df$stat<=0.0)
+quantile(df$stat,probs=c(.025, .975))
+
+```
+
+
+### Observed data
+
+The participants in this study were 48 bank supervisors who identified as male, attending a management institute at the [University of North Carolina](https://www.unc.edu/) in 1972. They were asked to assume the role of the personnel director of a bank and were given a personnel file to judge whether the person should be promoted to a branch manager position.
+The files given to the participants were identical, except that half of them indicated the candidate identified as male and the other half indicated the candidate identified as female.
+
+These files were randomly assigned to the subjects. For each supervisor both the sex associated with the assigned file and the promotion decision were recorded. Using the results of the study, we would like to evaluate if individuals who identify as female are unfairly discriminated against in promotion decisions.
+
+In this study, a smaller proportion of female identifying applications were promoted than males, but it is unclear whether the difference provides *convincing evidence* that individuals who identify as female are unfairly discriminated against. 
+
+The data are visualized in Figure \@ref(fig:sex-rand-obs) as a set of cards.
+Note that each card denotes a personnel file (an observation from our dataset) and the colors indicate the decision: red for promoted and white for not promoted.
+Additionally, the observations are broken up into groups of male and female identifying groups.
+
+
+
+
+<div class="column-right-small">
+
+
+```{r sex-rand-obs, out.width = "15%", fig.cap = "The sex discrimination study can be thought of as 48 red and white cards.", fig.alt = "48 cards are laid out; 24 indicating male files, 24 indicated female files.  Of the 24 male files 3 of the cards are colored white, and 21 of the cards are colored red. Of the female files, 10 of the cards are colored white, and 14 of the cards are colored red."}
+knitr::include_graphics("images/sex-rand-01-obs.png")
+```
+
+Women get paid less than men. Can we use statistics to show that this is due to discrimination and not due to other factors? 
+</div>
+
+
+
+
+\vspace{-2mm}
+
+-   $H_0:$ **Null hypothesis**\index{null hypothesis}.
+    The variables `sex` and `decision` are independent.
+    They have no relationship, and the observed difference between the proportion of males and females who were promoted, was due to the natural variability inherent in the population.
+-   $H_A:$ **Alternative hypothesis**\index{alternative hypothesis}.
+    The variables `sex` and `decision` are *not* independent.
+    The difference in promotion rates was not due to natural variability, and equally qualified female personnel are less likely to be promoted than male personnel.
+
+
+::: {.SPSS}
+**Hypothesis testing.**
+
+These hypotheses are part of what is called a **hypothesis test**\index{hypothesis test}.
+A hypothesis test is a statistical technique used to evaluate competing claims using data.
+Often times, the null hypothesis takes a stance of *no difference* or *no effect*.
+This hypothesis assumes that any differences seen are due to the variability inherent in the population and could have occurred by random chance.
+
+If the null hypothesis and the data notably disagree, then we will reject the null hypothesis in favor of the alternative hypothesis.
+
+There are many nuances to hypothesis testing, so do not worry if you aren't a master of hypothesis testing at the end of this section.
+We'll discuss these ideas and details many times in this chapter as well as in the chapters that follow.
+:::
+
+We will choose between the two competing claims by assessing if the data conflict so much with $H_0$ that the null hypothesis cannot be deemed reasonable.
+If data and the null claim seem to be at odds with one another, and the data seem to support $H_A,$ then we will reject the notion of independence and conclude that the data provide evidence of discrimination.
+
+1. Is this an [observational study or an experiment](https://www.youtube.com/watch?v=Z_OJzgkKe2A)? How does the type of study impact what can be inferred from the results? Please justify your answer. 
+
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="column-full-left">
+
+
+# Numeric literacy: [A rising tide lifts all boats](https://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats)?
+
+Poor students in rich countries and rich students in poor ones. Who has better math scores?
+
+There are some things money can’t buy. Education, however, does not appear to be among them—at least as measured by performance on international exams. On average, the poorest pupils in wealthy countries obtain vastly higher test scores than the richest in developing ones. In turn, strong students tend to become productive workers, making the mostly rich economies richer still. 
+
+The exact mechanism by which knowledge is bought remains unclear. Do students in the rich world fare better because their governments provide superior schools? Or is the reason that they tend to have richer parents, and enjoy more educational resources at home? A new working paper by Dev Patel of Harvard University and Justin Sandefur of the Centre for Global Development, a think-tank, offers strong evidence that the wealth of a country affects exam results just as much as the wealth of a pupil’s household does.
+
+Evaluating test scores around the world is harder than it sounds. Although pupils in the rich world mostly take one of a few big international exams, many developing countries rely on regional tests. This precludes apples-to-apples comparisons.
+
+Please study the graph below carefully, read the explanation and answer the questions below: 
+
+
+<div class="column-full">
+
+```{r numeric-lit, echo=FALSE, fig.align="center", fig.cap="", out.width=800}
+knitr::include_graphics("images/mathincome.png")
+```
+
+</div>
+
+Sources: The Economist, Sources: "A Rosetta Stone for Human Capital", by D. Patel and J. Sandefur; World Bank; The Economist
+
+This article appeared in the [Graphic detail section](https://www.economist.com/graphic-detail/2020/10/03/its-better-to-be-a-poor-pupil-in-a-rich-country-than-the-reverse) section of the print edition under the headline "A rising tide".
+
+
+
+### Questions: 
+
+1. What do you notice? In your answer, please refer to *all* three graphs.
+    
+    After studying ALL THREE graphs and reading the text, what details do you see in the graph that are unusual or surprising? Looking at it carefully and paying attention to detail, what can you get out of the graph that is not necessarily obvious at first glance. 
+    
+2. What do you wonder? 
+    
+    Try to formulate a question, related to the graph, something that you would genuinely like to know. Please state your question clearly: as in a statement that ends with a question mark. 
+    
+3. How does this relate to you and your community?
+
+    Think of something that makes this graph relate to you personally or to your community, however defined (nationality, age, origin, gender, etc..). Make sure that you *do not* describe  something that relates to everyone, no matter who they are, but only to members of *your* community. You are looking for something *specific* that does not relate to other communities. This is your opportunity to be creative!  
+    
+4. What’s going on in this graph? Write a catchy headline that captures the graph’s main idea.
+</div>
+
+
