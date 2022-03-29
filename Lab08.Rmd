@@ -1,5 +1,5 @@
 ---
-title: "HW 08 - The binomial distribution"
+title: "HW 08 - Comparing proportions"
 subtitle: Individual assignment
 date: 'Due: April 3 at 23:59'
 output: html_document
@@ -263,11 +263,13 @@ Then, as we did with the original data, we tabulate the results and determine th
 
 Since the randomization of files in this simulation is independent of the promotion decisions, any difference in promotion rates is due to chance.
 
-3. Use the code below to generate one permutation of the data. Then create a contingency table of that permutation, and compare your results to the previous contingency table you made above. 
--    Are the total number of males and females the same as before? What about the total number of promoted and non-promoted? 
--    How do the proportions of promotions compare?
--    How does the difference in the proportion of promotions compare? 
+3. Use the code below to generate one permutation of the data. Then create a contingency table of that permutation, and compare your results to the previous contingency table you made above.
 
+    - Are the total number of males and females the same as before? What about the total number of promoted and non-promoted? 
+    - How do the proportions of promotions compare?
+    - How does the difference in the proportion of promotions compare? 
+
+<br/>
 
 ```{r show-one-perm, echo=TRUE, eval=FALSE}
 
@@ -322,13 +324,16 @@ p.value <- mean(permute1000$stat > .875-.583)
 
 ```
 
+<br/>
+<br/>
 
 4. Finally, run the code below to simulate 1000 permutations of the data, permutations we would expect assuming that the null hypothesis was true. 
--    Assuming independence, what is the 95% confidence interval of the distribution of differences in proportion? 
--    Assuming independence, is the p-value of observing a difference in proportions as extreme as the one observed in our data? 
--    Does our data support our hypothesis $H_0$? Why or why not?
 
+    -  Assuming independence, what is the 95% confidence interval of the distribution of differences in proportion? 
+    -  Assuming independence, is the p-value of observing a difference in proportions as extreme as the one observed in our data?
+    -  Does our data support our hypothesis $H_0$? Why or why not?
 
+<br/>
 
 ```{r show-thousand-perm, echo=TRUE, eval=FALSE}
 
@@ -338,16 +343,17 @@ set.seed(___)
 # Assume that the decision to promote is independent of 
 # the sexual identity of the candidate 
 permute1000 <-  promo %>%
+  # in the formula we use `dependent` ~ `independent`
   specify(decision ~ sex, success = "promoted") %>%
   hypothesize(null = "independence") %>%
   generate(reps = ___, type = "permute") %>%
   calculate(stat = "diff in props", order = c("male", "female")) 
 
 # Create a histogram of the proportions, assuming 
-ggplot(permute1000) + geom_____()
+ggplot(___$___) + geom_____()
 
 # Now find the 95% confidence interval 
-quantile(permute1000, probs=c(___,___))
+quantile(___$___, probs=c(___,___))
 
 # Calculate the p-value, i.e. the probability that, given 
 # the independence assumption (promotion vs sex) we 
@@ -407,18 +413,21 @@ The [`opportunity_cost`](http://openintrostat.github.io/openintro/reference/oppo
 
 
 7. Generate one permutation of the data, just as we did above. Then create a contingency table of that permutation, and compare your results to the previous contingency table you made above. 
--    Are the total number of participants in each group the same as before? What about the total number of successes? 
--    How do the rate of success in your permutation compare to that of the study?
--    How does the difference in the rate of success in your permutation compare to that of the study? 
 
+    -  Are the total number of participants in each group the same as before? What about the total number of successes? 
+    -  How do the rate of success in your permutation compare to that of the study?
+    -  How does the difference in the rate of success in your permutation compare to that of the study? 
+
+<br/>
 
 8. Finally, run the code below to simulate 1000 permutations of the data, permutations we would expect assuming that the null hypothesis were true. 
--    Assuming independence, what is the 95% confidence interval of the distribution of differences in the rate of success? 
--    Assuming independence, is the p-value of observing differences in the rate of success as extreme as the one observed in our data? 
--    Does our data support our hypothesis $H_0$? Why or why not?
+    
+    -  Assuming independence, what is the 95% confidence interval of the distribution of differences in the rate of success? 
+    -  Assuming independence, is the p-value of observing differences in the rate of success as extreme as the one observed in our data? 
+    -  Does our data support our hypothesis $H_0$? Why or why not?
 
 
-
+<br/>
 
 </div>
 
