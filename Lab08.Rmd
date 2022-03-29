@@ -357,6 +357,69 @@ p.value <- mean(___$___ > ___)
 
 ```
 
+
+
+## Opportunity cost case study 
+
+How rational and consistent is the behavior of the typical American college student? In this section, we'll explore whether college student consumers always consider the following: money not spent now can be spent later.
+
+In particular, we are interested in whether reminding students about this well-known fact about money causes them to be a little thriftier.
+A skeptic might think that such a reminder would have no impact.
+We can summarize the two different perspectives using the null and alternative hypothesis framework.
+
+-   $H_0:$ **Null hypothesis**. Reminding students that they can save money for later purchases will not have any impact on students' spending decisions.
+-   $H_A:$ **Alternative hypothesis**. Reminding students that they can save money for later purchases will reduce the chance they will continue with a purchase.
+
+In this section, we'll explore an experiment conducted by researchers that investigates this very question for students at a university in the southwestern United States. The study was published under Frederick S, Novemsky N, Wang J, Dhar R, Nowlis S. 2009. Opportunity Cost Neglect. Journal of Consumer Research 36: 553-561.
+
+### Observed data
+
+One-hundred and fifty students were recruited for the study, and each was given the following statement:
+
+> *Imagine that you have been saving some extra money on the side to make some purchases, and on your most recent visit to the video store you come across a special sale on a new video. This video is one with your favourite actor or actress, and your favorite type of movie (such as a comedy, drama, thriller, etc.). This particular video that you are considering is one you have been thinking about buying for a long time. It is available for a special sale price of \$14.99. What would you do in this situation? Please circle one of the options below.*
+
+Half of the 150 students were randomized into a control group and were given the following two options:
+
+> (A) Buy this entertaining video.
+
+> (B) Not buy this entertaining video.
+
+The remaining 75 students were placed in the treatment group, and they saw a slightly modified option (B):
+
+> (A) Buy this entertaining video.
+
+> (B) Not buy this entertaining video. Keep the \$14.99 for other purchases.
+
+Would the extra statement reminding students of an obvious fact impact the purchasing decision? To answer the question, we will define a **success** in this study as a student who chooses not to buy the video (Success is often defined in a study as the outcome of interest, and a "success" may or may not actually be a positive outcome.     For example, researchers working on a study on COVID prevalence might define a "success" in the statistical sense as a patient who has COVID-19.)
+
+Then, the value of interest is the change in video purchase rates that results by reminding students that not spending money now means they can spend the money later.
+
+
+
+::: {.SPSS}
+The [`opportunity_cost`](http://openintrostat.github.io/openintro/reference/opportunity_cost.html) data can be found in the [**openintro**](http://openintrostat.github.io/openintro) R package.
+:::
+
+
+5. Is this an [observational study or an experiment](https://www.youtube.com/watch?v=Z_OJzgkKe2A)? How does the type of study impact what can be inferred from the results? Please justify your answer. 
+
+6. Create a contingency table, showing the treatment and control group choosing and the succes rate for each group. What is the difference in the success rate? 
+
+
+7. Generate one permutation of the data, just as we did above. Then create a contingency table of that permutation, and compare your results to the previous contingency table you made above. 
+-    Are the total number of participants in each group the same as before? What about the total number of successes? 
+-    How do the rate of success in your permutation compare to that of the study?
+-    How does the difference in the rate of success in your permutation compare to that of the study? 
+
+
+8. Finally, run the code below to simulate 1000 permutations of the data, permutations we would expect assuming that the null hypothesis were true. 
+-    Assuming independence, what is the 95% confidence interval of the distribution of differences in the rate of success? 
+-    Assuming independence, is the p-value of observing differences in the rate of success as extreme as the one observed in our data? 
+-    Does our data support our hypothesis $H_0$? Why or why not?
+
+
+
+
 </div>
 
 
